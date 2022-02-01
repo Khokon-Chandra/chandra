@@ -19,7 +19,6 @@ class Session
            $flashmessage['remove'] = true;
        }
        $_SESSION[self::FLASH_KEY] = $flashMessages;
-
     }
 
     public function setToken()

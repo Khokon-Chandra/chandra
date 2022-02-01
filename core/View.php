@@ -41,17 +41,22 @@ class View
         $this->viewContent = $this->getObject(['errors' => $errors]);
     }
 
+   
+
+
+   
+
     private function applyVariable($content,$params=[])
     {
-       
-        preg_match_all('~{{[a-zA-z0-9.$-> ]*}}~mi',$content,$matches);
-    
-        
+        if(!empty($params)){
+            extract($params); 
+        }
+        preg_match_all('~{{[a-zA-z0-9.$-> ]*}}~mi',$content,$matches); 
         foreach($matches[0] as $match)
         {
             $placeholder = $match;
-            $variable = ltrim(rtrim($placeholder,'}}'),'{{');
-            $content = str_replace($match,$$variable,$content);          
+            $variable = trim(ltrim(rtrim($placeholder,'}}'),'{{'),'$');
+            $content = str_replace($match,$variable,$content); 
         }
         return $content;
     }
@@ -67,8 +72,8 @@ class View
        
         extract(['error'=>$this->session->getFlashMessage('errors')]);
         include $this->path;
-        $content = ob_get_clean();
-        return $this->applyVariable($content,$params);
+       return ob_get_clean();
+      
     }
 
 
@@ -132,6 +137,7 @@ class View
     {
         $this->setViwPath($view);
        $this->processComponent($view,$params);
+        // return $this->applyVariable($this->viewContent,$params);
         return $this->viewContent;
     }
 }

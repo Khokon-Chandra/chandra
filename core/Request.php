@@ -20,6 +20,15 @@ class Request extends Validation
     }
 
 
+    public function isAjax()
+    {
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            return true;
+        }
+        return false;
+    }
+
+
     public function validate(array $rules = [])
     {
         $this->rules = $rules;
@@ -31,6 +40,10 @@ class Request extends Validation
        $validate = $this->exicuteValidation();
        if($validate){
            return $this->attributes;
+       }
+
+       if($validate === false && $this->isAjax()){
+           throw new \Exception(json_encode($this->errors),422);
        }
 
        $this->session->setFlashMessage('errors', $this->errors);

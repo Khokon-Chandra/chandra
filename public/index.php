@@ -6,7 +6,7 @@ require_once "../autoload.php";
 
 require_once "../core/Helpers.php";
 
-require_once "../route.php";
+require_once "../routes/web.php";
 
 
 $route->run();

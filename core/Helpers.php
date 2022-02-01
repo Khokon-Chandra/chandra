@@ -20,16 +20,18 @@ function getApp()
     return $route;
 }
 
-function _tocken()
+function _token()
 {
     $app = getApp();
-    $app->session->setToken();
+    if(empty($app->session->getToken())){
+        $app->session->setToken();
+    }
     return $app->session->getToken();
 }
 
 function csrf_token()
 {
-    return sprintf("<input type='hidden' name='_token' value='%s'>",_tocken());
+    return sprintf("<input type='hidden' name='_token' value='%s'>",_token());
 }
 
 
@@ -57,7 +59,7 @@ function dd($object)
     echo "<pre>";
     var_dump($object);
     echo "<pre>";
-    // exit();
+    exit();
 }
 
 

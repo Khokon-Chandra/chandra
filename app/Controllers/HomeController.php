@@ -1,4 +1,5 @@
 <?php
+
 namespace app\Controllers;
 
 use core\Request;
@@ -8,9 +9,9 @@ class HomeController
 
     public function index()
     {
-             
-        return view('index',[
-            'name'=>'Khokon Chandra',
+
+        return view('index', [
+            'name' => 'Khokon Chandra',
         ]);
     }
 
@@ -21,6 +22,6 @@ class HomeController
             'name'=>'required|min:5',
             'email' => 'required|unique:users',
         ]);
-        // dd($attributes);
+        return true;
     }
 }
