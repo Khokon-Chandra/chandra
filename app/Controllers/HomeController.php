@@ -4,24 +4,21 @@ namespace app\Controllers;
 
 use core\Request;
 
-class HomeController
+class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
-    {
-
-        return view('index', [
-            'name' => 'Khokon Chandra',
-        ]);
+    {    
+        return "This is home page";
     }
 
 
     public function store(Request $request)
     {
-        $attributes = $request->validate([
-            'name'=>'required|min:5',
-            'email' => 'required|unique:users',
-        ]);
-        return true;
+       
     }
 }

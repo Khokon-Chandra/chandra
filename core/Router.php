@@ -14,7 +14,7 @@ class Router
     public $routes = [];
     public $tempRoute   = '';
     public $routeNames = [];
-
+    
 
     public function __construct($request, $session, $view)
     {
@@ -75,16 +75,15 @@ class Router
             $isMatch = preg_match($pattern, $requestPath);
             if(!$isMatch) continue;
             preg_match($pattern,$requestPath,$matches);
-           
-            if (is_string($callback)) {
-                return $callback;
-            }
             if (is_array($callback)) {
                 $callback[0] = new $callback[0]();
+                $middleware  = $callback[0]->getMiddleware();
+                if(is_object($middleware)){
+                    $middleware->handle(Route::$app);
+                }
             }
             $matches = array_slice($matches,1);
-    
-           array_unshift($matches,$this->request);
+            array_unshift($matches,$this->request);
             return call_user_func($callback, ...$matches);
         }
         throw new NotFoundException();
@@ -92,3 +91,4 @@ class Router
   
     }
 }
+  

@@ -4,7 +4,7 @@
         <div class="card-body">
             <h3>Author: <i><?= $name ?></i></h3>
 
-            <form id="form" action="<?= route('store') ?>" method="POST">
+            <form id="form" action="<?= route('login.store') ?>" method="POST">
                 <?= csrf_token() ?>
                 <div class="mb-3">
                     <label for="">Name</label>

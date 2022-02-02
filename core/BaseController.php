@@ -2,10 +2,23 @@
 
 namespace core;
 
-class BaseController extends Route
+use app\Kernel;
+
+class BaseController
 {
-    public function __construct()
+    private $middlewareClass;
+  
+    protected function middleware($middlewareKey)
     {
-        
+        $kernel = new Kernel();
+        $this->middlewareClass = $kernel->middleware($middlewareKey);
+    }
+
+    public function getMiddleware()
+    {
+        if(isset($this->middlewareClass)){
+            return new $this->middlewareClass();
+        }
+        return false;
     }
 }

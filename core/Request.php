@@ -6,9 +6,10 @@ class Request extends Validation
 
 
     public Session $session;
+    public Auth $auth;
 
     public function __construct($session)
-    {
+    {  
         $this->session = $session;
     }
 

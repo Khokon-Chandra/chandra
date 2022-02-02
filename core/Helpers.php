@@ -11,7 +11,7 @@ $route = new Route();
 
 function view(string $view, array $params = [])
 {
-    return Route::$view->renderView($view, $params);
+    return Route::$app->view->renderView($view, $params);
 }
 
 function getApp()
@@ -43,10 +43,10 @@ function asset(string $file)
 
 function route($name, $parm = null)
 {
-    $routeName =  Route::$router->routeNames[$name]??false;
+    $routeName =  Route::$app->router->routeNames[$name]??false;
     if($routeName === false)
     {
-      Route::$view->renderError("Route name <i class='text-danger'>$name</i> not found");
+      Route::$app->view->renderError("Route name <i class='text-danger'>$name</i> not found");
         return Route::$view->viewContent;
     }
     return $routeName;
