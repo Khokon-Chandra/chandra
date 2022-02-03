@@ -5,9 +5,9 @@ class Auth
 {
     private $session;
     
-    public function __construct()
+    public function __construct(Session $session)
     {
-        $this->session = new Session();
+        $this->session = $session;
     }
 
     public function attemt($attr)
@@ -27,6 +27,11 @@ class Auth
             $this->{$key} = $value;
         }
         return $this;
+    }
+
+    public function logout()
+    {
+        $this->session->remove('auth');
     }
 
     

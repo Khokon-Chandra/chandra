@@ -21,7 +21,8 @@ class View
     private function setViwPath($view)
     {
         $path = str_replace('.', '/', $this->removeExtention($view));
-        $this->path = BASE_URL . "/views/$view.php";
+        $this->path = BASE_URL . "/views/$path.php";
+    
         if (!file_exists($this->path)) {
             $errorMessage = $view . " file not exists";
             $this->renderError($errorMessage);
@@ -31,7 +32,7 @@ class View
 
     private function removeExtention($view)
     {
-        return str_replace('/', '.php', $view);
+        return str_replace('.php', '', $view);
     }
 
 
@@ -137,7 +138,6 @@ class View
     {
         $this->setViwPath($view);
        $this->processComponent($view,$params);
-        // return $this->applyVariable($this->viewContent,$params);
         return $this->viewContent;
     }
 }

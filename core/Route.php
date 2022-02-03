@@ -2,6 +2,8 @@
 
 namespace core;
 
+use app\Controllers\Controller;
+
 class Route
 {
     public View $view;
@@ -9,14 +11,15 @@ class Route
     public Session $session;
     public Router $router;
     public Auth $auth;
+    public Controller $controller;
     public static $app;
     public function __construct()
     {
         $this->session = new Session();
         $this->request = new Request($this->session);
         $this->view    = new View($this->request, $this->session);
-        $this->router  = new Router($this->request, $this->session, $this->view);
-        $this->auth    = new Auth();
+        $this->auth    = new Auth($this->session);
+        $this->router  = new Router($this->request, $this->session, $this->auth);
         self::$app     = $this;
     }
 
@@ -30,6 +33,11 @@ class Route
     {
         self::$app->router->post($path, $callback);
         return self::$app->router;
+    }
+
+    public static function group(array $attribute = [], $callback)
+    {
+        self::$app->router->group($attribute,$callback);
     }
 
     public function name($name)

@@ -11,6 +11,7 @@ class NotFoundException extends \Exception
         if(!is_null($message)){
             $this->message = $message;
         }
+        
     }
 
 }

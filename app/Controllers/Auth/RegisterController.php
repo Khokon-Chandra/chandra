@@ -2,16 +2,16 @@
 
 namespace app\Controllers\Auth;
 
-use app\Controllers\Controller;
-use core\Auth;
 use core\Request;
+use app\Controllers\Controller;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
+
 
     public function create()
     {    
-        return view('auth.login', [
+        return view('auth.register', [
             'name' => 'Khokon Chandra',
         ]);
     }
@@ -29,12 +29,6 @@ class LoginController extends Controller
             header('location:/');
         }
         header('location:/login');
-    }
-
-
-    public function destroy(Request $request)
-    {
-        $this->auth->logout();
     }
 
 

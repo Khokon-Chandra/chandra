@@ -9,18 +9,24 @@ class Router
 {
     private Request $request;
     private Session $session;
-    private View $view;
-
+    private Auth $auth;
+    
     public $routes = [];
     public $tempRoute   = '';
     public $routeNames = [];
     
+    
+    private $prefix     = '';
+    private $middleware = null;
 
-    public function __construct($request, $session, $view)
+    private const CALLBACK = 'callback';
+    private const MIDDLEWARE = 'middleware';
+    
+    public function __construct($request, $session, $auth)
     {
         $this->request = $request;
         $this->session = $session;
-        $this->view    = $view;
+        $this->auth    = $auth;
     }
 
     private function makeRoutePattern($path)
@@ -45,17 +51,31 @@ class Router
 
     public function get($path, $callback)
     {
-
-        $path = $this->trimPath($path);
+        $path = $this->prefix . $this->trimPath($path);
         $this->setTempRoute($path);
-        $this->routes['get'][$this->makeRoutePattern($path)] = $callback;
+        $this->routes['get'][$this->makeRoutePattern($path)] = [
+            self::MIDDLEWARE => $this->middleware,
+            self::CALLBACK => $callback
+        ];
     }
 
     public function post($path, $callback)
     {
-        $path = $this->trimPath($path);
+        $path = $this->prefix . $this->trimPath($path);
         $this->setTempRoute($path);
-        $this->routes['post'][$this->makeRoutePattern($path)] = $callback;
+        $this->routes['post'][$this->makeRoutePattern($path)] = [
+            self::MIDDLEWARE => $this->middleware,
+            self::CALLBACK => $callback
+        ];
+    }
+
+    public function group($attribute, $callback)
+    {
+        $this->prefix = isset($attribute['prefix']) ? '/' . trim($attribute['prefix'], '/') : '';
+        $this->middleware = $attribute['middleware'] ?? null;
+        if (is_callable($callback)) {
+            call_user_func($callback);
+        }
     }
 
     public function name($name)
@@ -71,24 +91,33 @@ class Router
         }
         $requestPath = $this->request->getPath();
         $routes      = $this->routes[$this->request->getMethod()];
-        foreach($routes as $pattern => $callback){
+        foreach ($routes as $pattern => $callback) {
+
+            $middleware = $callback[self::MIDDLEWARE];
+            $callback = $callback[self::CALLBACK];
+            
             $isMatch = preg_match($pattern, $requestPath);
-            if(!$isMatch) continue;
-            preg_match($pattern,$requestPath,$matches);
+            if (!$isMatch) continue;
+            
+            preg_match($pattern, $requestPath, $matches);
+
             if (is_array($callback)) {
-                $callback[0] = new $callback[0]();
-                $middleware  = $callback[0]->getMiddleware();
-                if(is_object($middleware)){
+                $callback[0] = new $callback[0](Route::$app);
+                $controller  =  $callback[0];
+                $controller->setRequest($this->request);
+                $controller->setAuth($this->auth);
+                if ($middleware !== null) {
+                    $controller->middleware($middleware);
+                }
+                $middleware  = $controller->getMiddleware();
+                if (is_object($middleware)) {
                     $middleware->handle(Route::$app);
                 }
             }
-            $matches = array_slice($matches,1);
-            array_unshift($matches,$this->request);
+            $matches = array_slice($matches, 1);
+            array_unshift($matches, $this->request);
             return call_user_func($callback, ...$matches);
         }
         throw new NotFoundException();
-
-  
     }
 }
-  
