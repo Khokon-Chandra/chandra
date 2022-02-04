@@ -24,16 +24,5 @@
             </form>
         </div>
     </div>
-    <script>
-        // $(document).ready(function() {
-        //     $('#form').submit(function() {
-        //         event.preventDefault();
-        //         axios.post(this.action, $('#form').serialize(),{ headers: {'X-Requested-With': 'XMLHttpRequest'}}).then((response)=>{
-        //             console.log(response.data);
-        //         }).catch((error)=>{
-        //             console.log(error.response.data);
-        //         })
-        //     })
-        // })
-    </script>
+
 </x-layouts.app>

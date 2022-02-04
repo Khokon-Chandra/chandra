@@ -17,16 +17,12 @@ class Auth
 
     public function id()
     {
-       return $this->session->get('auth')['id']??false;
+       return $this->session->get('auth')->id??false;
     }
     
     public function user()
     {
-        $auth = $this->session->get('auth');
-        foreach($auth as $key=>$value){
-            $this->{$key} = $value;
-        }
-        return $this;
+        return $this->session->get('auth');
     }
 
     public function logout()

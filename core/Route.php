@@ -12,6 +12,7 @@ class Route
     public Router $router;
     public Auth $auth;
     public Controller $controller;
+    public Database $db;
     public static $app;
     public function __construct()
     {
@@ -20,6 +21,7 @@ class Route
         $this->view    = new View($this->request, $this->session);
         $this->auth    = new Auth($this->session);
         $this->router  = new Router($this->request, $this->session, $this->auth);
+        $this->db      = new Database();
         self::$app     = $this;
     }
 

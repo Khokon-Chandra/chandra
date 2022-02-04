@@ -12,6 +12,7 @@ class Validation
     protected const UNIQUE = 'unique';
     protected const INCORRECT = 'incorrect';
     protected const EXISTS = 'exists';
+    protected const PASSWORD = 'password';
     protected const IMAGE = 'image';
     public array $errors = [];
     protected array $rules = [];
@@ -44,7 +45,7 @@ class Validation
             foreach($rule as $item){
                 $rulename = is_array($item) ? array_key_first($item) : $item;
                 if(self::REQUIRED === $rulename && empty($value)){
-                   $this->addError($attribute, self::REQUIRED);
+                   $this->addError($attribute, self::REQUIRED, ['attr'=>$attribute]);
                 }
                 
                 if(self::MIN === $rulename && !empty($value) && strlen($value) < reset($item) ){
@@ -56,12 +57,20 @@ class Validation
                  }
 
                  if(self::UNIQUE === $rulename && !empty($value)){
-                   
                     $object = $this->getOne(reset($item), $attribute, $value);
                     if(!empty($object)){
                         $this->addError($attribute, self::UNIQUE, ['field'=>$attribute]);
                     }
                  }
+
+                 if(self::EXISTS === $rulename && !empty($value)){
+                    $object = $this->getOne(reset($item), $attribute, $value);
+                    if(empty($object)){
+                        $this->addError($attribute, self::EXISTS, ['field'=>$attribute]);
+                    }
+                 }
+
+                 
 
             }           
             
@@ -86,14 +95,15 @@ class Validation
     private function errorMessages()
     {
         return [
-            self::REQUIRED  =>"This field must not be empty",
+            self::REQUIRED  =>"{attr} is required",
             self::EMAIL     =>"This field must be valid email address",
             self::MIN       =>"Minimum length of this field {min}",
             self::MAX       =>"Maximum length of this field {max}",
             self::MATCH     =>"This field must be the same as {match}",
             self::UNIQUE    =>"Record with this {field} already exists",
             self::INCORRECT =>"Incorrect {field}",
-            self::EXISTS    =>"User doesn't exists with this {field}"
+            self::EXISTS    =>"Record doesn't exists with this {field}",
+            self::PASSWORD  =>"Invalid record"
         ];
     }
 

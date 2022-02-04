@@ -3,15 +3,23 @@
 namespace app\Controllers\Auth;
 
 use app\Controllers\Controller;
+use app\Models\User;
 use core\Auth;
 use core\Request;
 
 class LoginController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->model = new User();
+    }
+
     public function create()
-    {    
+    {   
+      
         return view('auth.login', [
+            'pageTitle' =>'Login',
             'name' => 'Khokon Chandra',
         ]);
     }
@@ -19,15 +27,15 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'name'=>'required|min:5',
-            'email' => 'required',
+            'email' => 'required|exists:users',
+            'password' => 'required',
         ]);
-        $attributes['id'] = 1;
-
-        if($request->email === 'info@gmail.com'){
-            $this->auth->attemt($attributes);
-            header('location:/');
-        }
+     
+       $user = $this->model->where('email',$request->email)->first();
+       if(password_verify($request->password,$user->password)){
+           $this->auth->attemt($user);
+           header('location:/');
+       }       
         header('location:/login');
     }
 

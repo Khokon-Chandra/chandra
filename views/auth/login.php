@@ -1,15 +1,16 @@
 <x-layouts.guest>
-<form style="width: 20rem;">
-<h4 class="text-center mb-4">Sign in Form</h4>
-
+<form method="POST" action="<?= route('login.store') ?>" style="width: 20rem;">
+<h4 class="text-center mb-4">Login in Form</h4>
+<?= csrf_token() ?>
   <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="form-label" for="form2Example1">Email address</label>
+    <input type="email" id="email" name="email" class="form-control" />
+    <label class="form-label" for="email">Email address</label>
+    <small class="invalid-feedback d-block mt-1"><?= $error['email'] ?? '' ?></small>
   </div>
 
   <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="form-label" for="form2Example2">Password</label>
+    <input type="password" id="password" name="password" class="form-control" />
+    <label class="form-label" for="password">Password</label>
   </div>
 
   <div class="d-flex justify-content-between mb-4">
@@ -20,7 +21,7 @@
       <a href="#!">Forgot password?</a>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Login in</button>
   <div class="text-center">
     <p>Not a member? <a href="<?= route('register.create') ?>">Register</a></p>
   </div>

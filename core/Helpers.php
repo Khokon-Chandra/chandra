@@ -23,7 +23,7 @@ function getApp()
 function _token()
 {
     $app = getApp();
-    if(empty($app->session->getToken())){
+    if (empty($app->session->getToken())) {
         $app->session->setToken();
     }
     return $app->session->getToken();
@@ -31,23 +31,27 @@ function _token()
 
 function csrf_token()
 {
-    return sprintf("<input type='hidden' name='_token' value='%s'>",_token());
+    return sprintf("<input type='hidden' name='_token' value='%s'>", _token());
 }
 
 
 function asset(string $file)
 {
-    echo APP_URL.'/'.trim($file,'/');
+    echo APP_URL . '/' . trim($file, '/');
 }
 
 
-function route($name, $parm = null)
+function route($name, $params = [])
 {
-    $routeName =  Route::$app->router->routeNames[$name]??false;
-    if($routeName === false)
-    {
-      Route::$app->view->renderError("Route name <i class='text-danger'>$name</i> not found");
+    $routeName =  Route::$app->router->routeNames[$name] ?? false;
+    if ($routeName === false) {
+        Route::$app->view->renderError("Route name <i class='text-danger'>$name</i> not found");
         return Route::$view->viewContent;
+    }
+    if(!empty($params)){
+        foreach($params as $key=>$value){
+            $routeName = str_replace("{{$key}}",$value,$routeName);
+        }
     }
     return $routeName;
 }
@@ -61,7 +65,3 @@ function dd($object)
     echo "<pre>";
     exit();
 }
-
-
-
-

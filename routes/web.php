@@ -24,3 +24,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/', [HomeController::class, 'index']);
     Route::post('/store', [HomeController::class, 'store']);
 });
+
+Route::get('/user/{id}',function(){
+    return 'param';
+})->name('param');
