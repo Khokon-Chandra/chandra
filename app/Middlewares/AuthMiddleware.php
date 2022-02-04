@@ -2,7 +2,7 @@
 namespace app\Middlewares;
 
 use core\Request;
-use app\Middlewares\BaseMiddleware as Middleware;
+use core\BaseMiddleware as Middleware;
 use core\Route;
 
 class AuthMiddleware extends Middleware

@@ -1,8 +1,5 @@
 <?php
-namespace app\Middlewares;
-
-use core\Request;
-use core\Route;
+namespace core;
 
 abstract class BaseMiddleware{
 
