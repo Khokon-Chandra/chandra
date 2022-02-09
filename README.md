@@ -14,7 +14,7 @@ I have developed it using OOP PHP && MySql.
     
   4.cd public<br>
   5. run the local server php -S localhost:8000<br>
-      php -S localhost:8000
+      php -S localhost:8000.<br>
   6.finaly goto the browser.<br>
     
   ## Features 
