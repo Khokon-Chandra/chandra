@@ -9,12 +9,11 @@ I have developed it using OOP PHP && MySql.
  1. clone this repository
  2. create a database (mysql)
  3. edit the config.php file and insert database info. 
-    hostname , database name, user and passwordl. also APP_URL
+    hostname , database name, user and passwordl. also APP_URL<br>
     
-   4. cd public<br>
-   5. php -S localhost:8000;<br>
-    
-    6.finaly goto the browser.<br>
+  4.cd public<br>
+  5.php -S localhost:8000<br>
+  6.finaly goto the browser.<br>
     
   ## Features 
   
