@@ -10,9 +10,11 @@ I have developed it using OOP PHP && MySql.
  2. create a database (mysql)
  3. edit the config.php file and insert database info. 
     hostname , database name, user and passwordl. also APP_URL<br>
+  import <>framework.sql</> file
     
   4.cd public<br>
-  5.php -S localhost:8000<br>
+  5. run the local server php -S localhost:8000<br>
+      php -S localhost:8000
   6.finaly goto the browser.<br>
     
   ## Features 
