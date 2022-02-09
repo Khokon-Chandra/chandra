@@ -24,6 +24,7 @@ class LoginController extends Controller
         ]);
     }
 
+
     public function store(Request $request)
     {
         $attributes = $request->validate([
@@ -33,7 +34,13 @@ class LoginController extends Controller
      
        $user = $this->model->where('email',$request->email)->first();
        if(password_verify($request->password,$user->password)){
-           $this->auth->attemt($user);
+           $this->auth->attemt([
+               'id'=>$user->id,
+               'name'=>$user->name,
+               'email'=>$user->email,
+               'created_at'=>$user->created_at,
+           ]);
+           $request->session->setFlashMessage('success','Successfully Loged in');
            header('location:/');
        }       
         header('location:/login');

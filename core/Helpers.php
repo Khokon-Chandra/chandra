@@ -56,7 +56,10 @@ function route($name, $params = [])
     return $routeName;
 }
 
-
+function session_flash($key)
+{
+    return Route::$app->session->getFlashMessage($key);
+}
 
 function dd($object)
 {

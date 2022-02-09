@@ -4,13 +4,14 @@ namespace app\Models;
 
 use core\Model;
 
-class User extends Model
+class Newsletters extends Model
 {
     
     protected function tablename():string
     {
-        return 'users';
+        return 'newsletters';
     }
 
-   
+
 }
+   

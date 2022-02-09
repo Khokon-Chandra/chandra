@@ -1,4 +1,5 @@
 <?php
+
 namespace core;
 
 class Request extends Validation
@@ -8,11 +9,23 @@ class Request extends Validation
     public Session $session;
 
     public function __construct($session)
-    {  
+    {
         $this->session = $session;
     }
 
-   
+    public function ip()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            //ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            //ip pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
 
     public function __get($name)
     {
@@ -22,7 +35,7 @@ class Request extends Validation
 
     public function isAjax()
     {
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             return true;
         }
         return false;
@@ -33,35 +46,34 @@ class Request extends Validation
     {
         $this->rules = $rules;
         $keys = array_keys($rules);
-        foreach($keys as $key){
+        foreach ($keys as $key) {
             $this->attributes[$key] = $this->getBody()[$key] ?? NULL;
         }
 
-       $validate = $this->exicuteValidation();
-       
-       if($validate){
-           return $this->attributes;
-       }
+        $validate = $this->exicuteValidation();
 
-       if($validate === false && $this->isAjax()){
-           throw new \Exception(json_encode($this->errors),422);
-       }
+        if ($validate) {
+            return $this->attributes;
+        }
 
-       $this->session->setFlashMessage('errors', $this->errors);
-       header("Location: " . $_SERVER["HTTP_REFERER"]);     
+        if ($validate === false && $this->isAjax()) {
+            throw new \Exception(json_encode($this->errors), 422);
+        }
 
+        $this->session->setFlashMessage('errors', $this->errors);
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
 
 
     public function getPath()
     {
         $path = rtrim($_SERVER['REQUEST_URI'], '/');
-        $path = empty($path) ? '/' : $path;        
-        $position = strpos($path,'?');
-        if($position === false){
+        $path = empty($path) ? '/' : $path;
+        $position = strpos($path, '?');
+        if ($position === false) {
             return $path;
-        }else{
-            return $path = substr($path,0,$position);
+        } else {
+            return $path = substr($path, 0, $position);
         }
     }
 
@@ -72,20 +84,21 @@ class Request extends Validation
 
     public function isPost()
     {
-        return $this->getMethod()=== 'post' ? true : false;
+        return $this->getMethod() === 'post' ? true : false;
     }
 
-    public function getBody(){
-        $body=[];
-        if($this->getMethod() === "get"){
-            foreach ($_GET as $key => $value){
-                $body[$key] = filter_input(INPUT_GET,$key,FILTER_SANITIZE_SPECIAL_CHARS);
+    public function getBody()
+    {
+        $body = [];
+        if ($this->getMethod() === "get") {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
 
-        if($this->getMethod() === "post"){
-            foreach ($_POST as $key => $value){
-                $body[$key] = filter_input(INPUT_POST,$key,FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($this->getMethod() === "post") {
+            foreach ($_POST as $key => $value) {
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
         return $body;
@@ -99,18 +112,15 @@ class Request extends Validation
 
 
     public function verifyCsrfTocken()
-    {     
+    {
         $attributes = $this->getBody();
         $token = $attributes['_token'] ?? false;
-        if($token === false){
+        if ($token === false) {
             return false;
         }
-        if($token !== $this->session->getToken()){
+        if ($token !== $this->session->getToken()) {
             return false;
         }
         return true;
     }
-
-
-
 }

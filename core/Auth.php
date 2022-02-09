@@ -12,12 +12,15 @@ class Auth
 
     public function attemt($attr)
     {
+        foreach($attr as $key=>$value){
+            $this->{$key} = $value;
+        }
         $this->session->set('auth',$attr);        
     }
 
     public function id()
     {
-       return $this->session->get('auth')->id??false;
+       return $this->session->get('auth')['id']??false;
     }
     
     public function user()

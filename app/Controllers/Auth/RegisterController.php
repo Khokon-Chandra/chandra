@@ -39,6 +39,7 @@ class RegisterController extends Controller
 
         $attributes['password'] = password_hash($attributes['password'], PASSWORD_DEFAULT);
         $this->model->create($attributes);
+        $request->session->setFlashMessage('success','Successfully Registered');
         header('location:/login');
     }
 

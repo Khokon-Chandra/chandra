@@ -31,11 +31,14 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="<?= route('home') ?>">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= route('news_letter.index') ?>">Newsletter</a>
         </li>
       </ul>
       <!-- Left links -->
-
+      <div class="mx-5 d-flex align-items-center"><?= $auth->user()['name'] ?></div>
       <div class="d-flex align-items-center">
         <form action="<?= route('login.destroy') ?>" method="POST">
         <?= csrf_token() ?>

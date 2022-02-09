@@ -71,7 +71,7 @@ class View
             
         }
        
-        extract(['error'=>$this->session->getFlashMessage('errors')]);
+        extract(['error'=>$this->session->getFlashMessage('errors'),'auth'=>Route::$app->auth]);
         include $this->path;
        return ob_get_clean();
       

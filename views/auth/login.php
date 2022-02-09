@@ -15,7 +15,7 @@
 
   <div class="d-flex justify-content-between mb-4">
       <div class="form-check d-flex">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
+        <input class="form-check-input" name="remember_tocken" type="checkbox" value="" id="form2Example34" checked />
         <label class="form-check-label" for="form2Example34"> Remember me </label>
       </div>
       <a href="#!">Forgot password?</a>
