@@ -7,7 +7,7 @@ use app\Models\User;
 use core\Auth;
 use core\Request;
 
-class LoginController extends Controller
+class ForgotPasswordController extends Controller
 {
 
     public function __construct()
@@ -17,8 +17,8 @@ class LoginController extends Controller
 
     public function create()
     {   
-        
-        return view('auth.login', [
+      
+        return view('auth.forgot', [
             'pageTitle' =>'Login',
             'name' => 'Khokon Chandra',
         ]);
@@ -29,8 +29,9 @@ class LoginController extends Controller
     {
         $attributes = $request->validate([
             'email' => 'required|exists:users',
-            'password' => 'required',
         ]);
+
+        
      
        $user = $this->model->where('email',$request->email)->first();
        if(password_verify($request->password,$user->password)){
@@ -40,10 +41,11 @@ class LoginController extends Controller
                'email'=>$user->email,
                'created_at'=>$user->created_at,
            ]);
-           $request->session->setFlashMessage('success','Successfully Loged in');
-           redirect('/');
        }       
-        redirect('/login');
+    $user = $this->model->where('email',$request->email)->first();
+    
+    redirect('/');
+       
     }
 
 

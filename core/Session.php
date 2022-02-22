@@ -11,19 +11,19 @@ class Session
 
     public function __construct()
     {
-         if(session_status() == PHP_SESSION_NONE){
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-       $flashMessages = $_SESSION[self::FLASH_KEY]??[];
-       foreach ($flashMessages as $key => &$flashmessage){
-           $flashmessage['remove'] = true;
-       }
-       $_SESSION[self::FLASH_KEY] = $flashMessages;
+        $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
+        foreach ($flashMessages as $key => &$flashmessage) {
+            $flashmessage['remove'] = true;
+        }
+        $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
 
     public function setToken()
     {
-        $this->set(self::TOKEN,$this->getRandomString(30));
+        $this->set(self::TOKEN, $this->getRandomString(30));
     }
 
     public function getToken()
@@ -32,20 +32,20 @@ class Session
     }
 
 
-    public function setFlashMessage($key , $message)
+    public function setFlashMessage($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] = [
-            "remove"=>false,
-            "message"=>$message
+            "remove" => false,
+            "message" => $message
         ];
     }
 
     public function getFlashMessage($key)
     {
-        return $_SESSION[self::FLASH_KEY][$key]["message"]??false;
+        return $_SESSION[self::FLASH_KEY][$key]["message"] ?? false;
     }
 
-    public function set($key,$value)
+    public function set($key, $value)
     {
         $_SESSION[$key] = $value;
     }
@@ -53,7 +53,7 @@ class Session
 
     public function get($key)
     {
-        return $_SESSION[$key]??false;
+        return $_SESSION[$key] ?? false;
     }
 
 
@@ -63,10 +63,11 @@ class Session
     }
 
 
-    private function getRandomString($n) {
+    private function getRandomString($n)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
-      
+
         for ($i = 0; $i < $n; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $randomString .= $characters[$index];
@@ -77,17 +78,12 @@ class Session
 
     public function __destruct()
     {
-        $flashMessages = $_SESSION[self::FLASH_KEY]??[];
-        foreach($flashMessages as $key=>&$flashMessage){
-            if($flashMessage['remove']){
+        $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
+        foreach ($flashMessages as $key => &$flashMessage) {
+            if ($flashMessage['remove']) {
                 unset($flashMessages[$key]);
             }
         }
         $_SESSION[self::FLASH_KEY] = $flashMessages;
- 
     }
-
-
-
-
 }

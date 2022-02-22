@@ -18,7 +18,7 @@
   <script type="text/javascript" src="<?= asset('js/vendor/toastr.min.js') ?>"></script>
 </head>
 
-<body class="bg-dark">
+<body >
   <?php include(BASE_URL . "/views/layouts/navbar.php") ?>
 
   <div class="container">

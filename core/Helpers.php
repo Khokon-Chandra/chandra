@@ -1,5 +1,6 @@
 <?php
 
+use app\Exceptions\HttpRedirectException;
 use core\Route;
 use core\Session;
 use core\View;
@@ -59,6 +60,11 @@ function route($name, $params = [])
 function session_flash($key)
 {
     return Route::$app->session->getFlashMessage($key);
+}
+
+function redirect(string $To)
+{
+    throw new HttpRedirectException($To);
 }
 
 function dd($object)

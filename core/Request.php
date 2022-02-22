@@ -61,7 +61,7 @@ class Request extends Validation
         }
 
         $this->session->setFlashMessage('errors', $this->errors);
-        header("Location: " . $_SERVER["HTTP_REFERER"]);
+        redirect($_SERVER["HTTP_REFERER"]);
     }
 
 

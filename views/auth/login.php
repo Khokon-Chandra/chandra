@@ -18,7 +18,7 @@
         <input class="form-check-input" name="remember_tocken" type="checkbox" value="" id="form2Example34" checked />
         <label class="form-check-label" for="form2Example34"> Remember me </label>
       </div>
-      <a href="#!">Forgot password?</a>
+      <a href="<?= route('forgot.create') ?>">Forgot password?</a>
   </div>
 
   <button type="submit" class="btn btn-primary btn-block mb-4">Login in</button>

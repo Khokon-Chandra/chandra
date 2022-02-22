@@ -36,6 +36,9 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= route('news_letter.index') ?>">Newsletter</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= route('posts.index') ?>">Posts</a>
+        </li>
       </ul>
       <!-- Left links -->
       <div class="mx-5 d-flex align-items-center"><?= $auth->user()['name'] ?></div>

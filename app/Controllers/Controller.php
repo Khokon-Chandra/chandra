@@ -11,7 +11,7 @@ class Controller{
     private $middlewareClass;
     protected ?Auth $auth;
     protected ?Request $request;
- 
+    
     
     public function setRequest(?Request $request)
     {

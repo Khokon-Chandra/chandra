@@ -55,6 +55,9 @@ class Route
         } catch (\Exception $error) {
             http_response_code($error->getCode());
             echo $error->getMessage();
+           if($error->getCode() === 302){
+               header("location:".$error->getMessage());
+           }
         }
     }
 }
