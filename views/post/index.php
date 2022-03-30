@@ -16,7 +16,6 @@
                 <div class="card-body">%s</div>
             </div>',$post->title, $post->content);
        }
-
     ?>
 
 

@@ -15,6 +15,4 @@ Route::group(['middleware' => 'guest'], function () {
     
     Route::get('/forgot_password',[ForgotPasswordController::class,'create'])->name('forgot.create');
     Route::post('/forgot_password',[ForgotPasswordController::class,'store'])->name('forgot.store');
-
-
 });

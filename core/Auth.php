@@ -1,10 +1,12 @@
 <?php
+
 namespace core;
 
 class Auth
 {
     private $session;
-    
+    private $key = 'auth_' . APP_KEY;
+
     public function __construct(Session $session)
     {
         $this->session = $session;
@@ -12,26 +14,25 @@ class Auth
 
     public function attemt($attr)
     {
-        foreach($attr as $key=>$value){
+        foreach ($attr as $key => $value) {
             $this->{$key} = $value;
         }
-        $this->session->set('auth',$attr);        
+        $this->session->set($this->key, $attr);
     }
 
     public function id()
     {
-       return $this->session->get('auth')['id']??false;
+        return $this->session->get($this->key)['id'] ?? false;
     }
-    
+
     public function user()
     {
-        return $this->session->get('auth');
+        return $this->session->get($this->key);
     }
 
     public function logout()
     {
-        $this->session->remove('auth');
+        $this->session->remove($this->key);
     }
-
     
 }

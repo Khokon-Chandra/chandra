@@ -16,10 +16,10 @@ class LoginController extends Controller
     }
 
     public function create()
-    {   
-        
+    {
+
         return view('auth.login', [
-            'pageTitle' =>'Login',
+            'pageTitle' => 'Login',
             'name' => 'Khokon Chandra',
         ]);
     }
@@ -31,18 +31,20 @@ class LoginController extends Controller
             'email' => 'required|exists:users',
             'password' => 'required',
         ]);
-     
-       $user = $this->model->where('email',$request->email)->first();
-       if(password_verify($request->password,$user->password)){
-           $this->auth->attemt([
-               'id'=>$user->id,
-               'name'=>$user->name,
-               'email'=>$user->email,
-               'created_at'=>$user->created_at,
-           ]);
-           $request->session->setFlashMessage('success','Successfully Loged in');
-           redirect('/');
-       }       
+
+        $user = $this->model->where('email', $request->email)->first();
+
+        if (password_verify($request->password, $user->password)) {
+            $this->auth->attemt([
+                'id'         => $user->id,
+                'name'       => $user->name,
+                'email'      => $user->email,
+                'created_at' => $user->created_at,
+            ]);
+            $request->session->setFlashMessage('success', 'Successfully Loged in');
+            redirect('/');
+        }
+
         redirect('/login');
     }
 
@@ -51,6 +53,4 @@ class LoginController extends Controller
     {
         $this->auth->logout();
     }
-
-
 }
