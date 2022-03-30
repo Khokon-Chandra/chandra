@@ -24,30 +24,30 @@ abstract class Model
 
     public function where($columnName, $operator = null, $value = null)
     {
-       if(func_num_args() === 2){
-            $value = $operator;
+        if (func_num_args() === 2) {
+            $value    = $operator;
             $operator = "=";
-       }
-        $string = $columnName .$operator."'$value'";
+        }
+        $string = $columnName . $operator . "'$value'";
         if (!empty($this->conditionString)) {
             $this->conditionString .= " AND " . $string;
             return $this;
-        } 
+        }
         $this->conditionString = $string;
         return $this;
     }
 
     public function all()
     {
-        $tablename = $this->table;
-        $statement = $this->db->prepare("SELECT * FROM $tablename");
+        $this->table = $this->table;
+        $statement  = $this->db->prepare("SELECT * FROM $this->table");
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_OBJ);
     }
 
     public function get()
     {
-        if(!empty($this->setBelongsTo())){
+        if (!empty($this->setBelongsTo())) {
             return $this->setBelongsTo();
         }
         $this->statement->execute();
@@ -57,16 +57,14 @@ abstract class Model
     public function first()
     {
         if ($this->statement === null) {
-            $tablename = $this->table;
-            $sql       = "SELECT * FROM $tablename";
-            if(!empty($this->conditionString)){
-                $sql = "SELECT * FROM $tablename WHERE $this->conditionString";
+            $this->table = $this->table;
+            $sql       = "SELECT * FROM $this->table";
+            if (!empty($this->conditionString)) {
+                $sql = "SELECT * FROM $this->table WHERE $this->conditionString";
             }
             $this->statement = $this->db->prepare($sql);
         }
 
-        // dd($this->statement);
-      
         $this->statement->execute();
         return $this->statement->fetchObject();
     }
@@ -74,8 +72,8 @@ abstract class Model
     public function select(...$fields)
     {
         $placeholders = implode(',', $fields);
-        $tablename = $this->table;
-        $this->statement = $this->db->prepare("SELECT $placeholders FROM $tablename");
+        $this->table = $this->table;
+        $this->statement = $this->db->prepare("SELECT $placeholders FROM $this->table");
         return $this;
     }
 
@@ -86,16 +84,15 @@ abstract class Model
         if (empty($data)) {
             throw new \Exception('record given empty');
         }
-        $tablename    = $this->table;
         $fields       = implode(',', array_keys($data));
         $placeholders = implode(',', array_map(fn ($attr) => ":$attr", array_keys($data)));
-        $sql          = "INSERT INTO $tablename($fields) VALUES($placeholders)";
+        $sql          = "INSERT INTO $this->table($fields) VALUES($placeholders)";
         $statement    = $this->db->prepare($sql);
         foreach ($data as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
         $statement->execute();
-        return true;
+        return $this->where('id',$this->db->lastInsertId())->first();
     }
 
 
@@ -104,7 +101,6 @@ abstract class Model
         if (empty($data)) {
             throw new \Exception('record given empty');
         }
-        $tablename    = $this->table;
         $array_keys   = array_keys($data[0]);
         $fields       = implode(',', $array_keys);
         $arrayOfPlaceholder = [];
@@ -112,7 +108,7 @@ abstract class Model
             $arrayOfPlaceholder[] = implode(',', array_map(fn ($attr) => ":$attr", $array_keys));
         }
         $placeholders = "(" . implode("),(", $arrayOfPlaceholder) . ")";
-        $sql          = "INSERT INTO $tablename($fields) VALUES $placeholders";
+        $sql          = "INSERT INTO $this->table($fields) VALUES $placeholders";
         $statement    = $this->db->prepare($sql);
         foreach ($data as $row) {
             foreach ($row as $key => $value) {
@@ -129,10 +125,9 @@ abstract class Model
         if (empty($data)) {
             throw new \Exception('record given empty');
         }
-        $tablename    = $this->table;
 
         $placeholders = implode(', ', array_map(fn ($attr) => "$attr=:$attr", array_keys($data)));
-        $sql          = "UPDATE $tablename SET $placeholders WHERE $this->conditionString ";
+        $sql          = "UPDATE $this->table SET $placeholders WHERE $this->conditionString ";
         $statement    = $this->db->prepare($sql);
         foreach ($data as $key => $value) {
             $statement->bindValue(":$key", $value);
@@ -145,27 +140,26 @@ abstract class Model
 
     public function delete()
     {
-        $tablename    = $this->table;
-        $statement = $this->db->prepare("DELETE FROM $tablename WHERE $this->conditionString");
+        $statement = $this->db->prepare("DELETE FROM $this->table WHERE $this->conditionString");
         $statement->execute();
         return true;
     }
 
     private function setBelongsTo()
     {
-        if(is_null($this->belongsTo)) return false;
+        if (is_null($this->belongsTo)) return false;
 
-        $tablename = $this->table;
-        $sql = "SELECT * FROM $tablename";
+        $this->table = $this->table;
+        $sql = "SELECT * FROM $this->table";
         $statement = $this->db->prepare($sql);
         $statement->execute();
         $childmodel = $statement->fetchAll(\PDO::FETCH_OBJ);
 
         $id = [];
-        foreach($childmodel as $child){
+        foreach ($childmodel as $child) {
             $id[] = $child->{$this->foreign_key};
         }
-        $id = implode(',',$id);
+        $id = implode(',', $id);
         $parentTable = $this->belongsTo->table;
         $sql = "SELECT * FROM $parentTable WHERE $this->owner_key IN ($id)";
         $statement = $this->db->prepare($sql);
@@ -173,17 +167,16 @@ abstract class Model
         $parentmodel = $statement->fetchAll(\PDO::FETCH_OBJ);
 
         $model = [];
-        foreach($childmodel as $child){
-            foreach($parentmodel as $parent){
-                if($child->{$this->foreign_key} == $parent->{$this->owner_key}){
+        foreach ($childmodel as $child) {
+            foreach ($parentmodel as $parent) {
+                if ($child->{$this->foreign_key} == $parent->{$this->owner_key}) {
                     $child->{$this->relationName} = $parent;
                 }
             }
-           $model[] = $child;
+            $model[] = $child;
         }
 
         return $model;
-        
     }
 
 
@@ -203,9 +196,8 @@ abstract class Model
     {
         return [
             "belongsTo" => new $Model(),
-            "foreign_key"=> $foreign_key,
+            "foreign_key" => $foreign_key,
             "owner_key" => $owner_key,
         ];
     }
-
 }

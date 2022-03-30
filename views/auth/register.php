@@ -3,7 +3,7 @@
 <h4 class="text-center mb-4">Register form</h4>
   <?= csrf_token() ?>
   <div class="form-outline mb-4">
-    <input type="email" name="name" id="name" class="form-control" required />
+    <input type="text" name="name" id="name" class="form-control" required />
     <label class="form-label" for="name">Name</label>
     <small class="invalid-feedback d-block mt-1"><?= $error['name'] ?? '' ?></small>
   </div>

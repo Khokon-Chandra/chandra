@@ -3,6 +3,8 @@
 namespace core;
 
 use app\Controllers\Controller;
+use app\Exceptions\NotFoundException;
+use core\Exceptions\DbException;
 
 class Route
 {
@@ -52,9 +54,20 @@ class Route
     {
         try {
             echo self::$app->router->resolve();
-        } catch (\Exception $error) {
+        }
+        catch(NotFoundException $error){
+            $view = BASE_URL."/views/errors/404.php";
+            if(file_exists($view)){
+                echo view('errors.404',[
+                    'pageTitle' => 'Page not found',
+                    'code' => $error->getCode(),
+                    'message' => $error->getMessage()
+                ]);
+            }
+        }
+        catch (\Exception $error) {
             http_response_code($error->getCode());
-            echo $error->getMessage();
+            print($error->getMessage());
            if($error->getCode() === 302){
                header("location:".$error->getMessage());
            }

@@ -1,30 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="_token" content="<?= _token() ?>">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom PHP APP</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  
-  <link rel="stylesheet" href="<?= asset('css/mdb.min.css') ?>" />
-  <link rel="stylesheet" href="<?= asset('css/toastr.min.css') ?>" />
 
-  <script type="text/javascript" src="<?= asset('js/vendor/mdb.min.js') ?>"></script>
-  <script type="text/javascript" src="<?= asset('js/vendor/jquery.min.js') ?>"></script>
-  <script type="text/javascript" src="<?= asset('js/vendor/axios.min.js') ?>"></script>
-  <script type="text/javascript" src="<?= asset('js/vendor/toastr.min.js') ?>"></script>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <title>Multisearch</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?= asset('css/toastr.min.css') ?>">
 </head>
 
-<body >
-  <?php include(BASE_URL . "/views/layouts/navbar.php") ?>
+<body>
+
+  <?php include(BASE_URL . '/views/layouts/navbar.php')  ?>
 
   <div class="container">
     <?= $slot ?>
   </div>
 
-  <script type="text/javascript" src="<?= asset('js/app.js') ?>"></script>
+
+  <script src="<?= asset('js/vendor/jquery.min.js') ?>"></script>
+  <script src="<?= asset('js/vendor/toastr.min.js') ?>"></script>
+  <script src="<?= asset('js/vendor/axios.min.js') ?>"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
+
 </html>
