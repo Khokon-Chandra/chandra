@@ -5,6 +5,7 @@ namespace core;
 abstract class Model
 {
     private Database $db;
+    private Request $request;
     private string $conditionString = '';
     private $statement;
 
@@ -14,11 +15,14 @@ abstract class Model
     private $foreign_key;
     private $owner_key;
 
+    private $sql = '';
+
     protected  $table;
 
     public function __construct()
     {
         $this->db = Route::$app->db;
+        $this->request = Route::$app->request;
     }
 
 
@@ -96,6 +100,39 @@ abstract class Model
     }
 
 
+    public function paginate($limit = 10)
+    {
+        $pageCount = $this->request->page ?? 0;
+        $offset    = $pageCount > 0 ? (intval($pageCount) - 1) * $limit : 0;
+        $limitSql  = " LIMIT $offset, $limit";
+
+        if (empty($this->sql)) {
+            $sql = "SELECT * FROM $this->table " . $limitSql;
+        } else {
+            $sql = $this->sql . $limitSql;
+        }
+
+        $this->statement = $this->db->prepare($sql);
+        $this->statement->execute();
+        $data = $this->statement->fetchAll(\PDO::FETCH_OBJ);
+
+        
+       
+        $stmp = $this->db->prepare("SELECT COUNT(*) as aggregate FROM $this->table");
+        $stmp->execute();
+        $aggregate = $stmp->fetchObject()->aggregate;
+        $paginate = new Paginate([
+            "limit"       => $limit,
+            "aggregate"   => $aggregate,
+            "data"        => $data,
+            "currentPage" => $this->request->page ?? 1,
+            "path"        => APP_URL.$this->request->getPath(),
+        ]);
+
+        return $paginate;
+    }
+
+
 
     public function create(array $data)
     {
@@ -162,6 +199,8 @@ abstract class Model
         $statement->execute();
         return true;
     }
+
+
 
     private function setBelongsTo()
     {

@@ -4,12 +4,16 @@ namespace App\Controllers;
 
 use app\Controllers\Controller;
 use core\Request;
+use app\Models\User;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return 'user list';
+        return view('user.index',[
+            'users' => app(User::class)->paginate(10)
+        ]);
+
     }
 
     public function create()

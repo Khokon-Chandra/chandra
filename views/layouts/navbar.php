@@ -23,6 +23,11 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= route('clients.index') ?>">Clients</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?= route('users.index') ?>">Users</a>
+        </li>
+
       </ul>
       <!-- Left links -->
       <div class="mx-5 d-flex align-items-center"><?= $auth->user()['name'] ?></div>
