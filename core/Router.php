@@ -10,18 +10,18 @@ class Router
     private Request $request;
     private Session $session;
     private Auth $auth;
-    
+
     public $routes = [];
     public $tempRoute   = '';
     public $routeNames = [];
-    
-    
+
+
     private $prefix     = '';
     private $middleware = null;
 
     private const CALLBACK = 'callback';
     private const MIDDLEWARE = 'middleware';
-    
+
     public function __construct($request, $session, $auth)
     {
         $this->request = $request;
@@ -57,6 +57,7 @@ class Router
             self::MIDDLEWARE => $this->middleware,
             self::CALLBACK => $callback
         ];
+        return $this;
     }
 
     public function post($path, $callback)
@@ -67,7 +68,31 @@ class Router
             self::MIDDLEWARE => $this->middleware,
             self::CALLBACK => $callback
         ];
+        return $this;
     }
+
+    /**
+     * Register Resource route
+     * @param string $path, $class
+     * @return Router
+     */
+
+    public function resource($path, $class)
+    {
+
+        $this->get($path, [$class, 'index'])->name("$path.index");
+
+        $this->get("$path/create", [$class, 'create'])->name("$path.create");
+        $this->post($path, [$class, 'store'])->name("$path.store");
+
+        $this->get("$path/{id}/edit", [$class, 'edit'])->name("$path.edit");
+        $this->post("$path/{id}/edit", [$class, 'update'])->name("$path.update");
+
+        $this->post("$path/{id}/delete", [$class, 'destroy'])->name("$path.destroy");
+
+        return $this;
+    }
+
 
     public function group($attribute, $callback)
     {
@@ -76,6 +101,7 @@ class Router
         if (is_callable($callback)) {
             call_user_func($callback);
         }
+        return $this;
     }
 
     public function name($name)
@@ -95,10 +121,10 @@ class Router
 
             $middleware = $callback[self::MIDDLEWARE];
             $callback = $callback[self::CALLBACK];
-            
+
             $isMatch = preg_match($pattern, $requestPath);
             if (!$isMatch) continue;
-            
+
             preg_match($pattern, $requestPath, $matches);
 
             if (is_array($callback)) {

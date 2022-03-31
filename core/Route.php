@@ -29,19 +29,22 @@ class Route
 
     public static function get($path, $callback)
     {
-        self::$app->router->get($path, $callback);
-        return self::$app->router;
+        return self::$app->router->get($path, $callback);
     }
 
     public static function post($path, $callback)
     {
-        self::$app->router->post($path, $callback);
-        return self::$app->router;
+        return self::$app->router->post($path, $callback);
+    }
+
+    public static function resource($path, $class)
+    {
+        return self::$app->router->resource($path, $class);
     }
 
     public static function group(array $attribute = [], $callback)
     {
-        self::$app->router->group($attribute,$callback);
+        return self::$app->router->group($attribute, $callback);
     }
 
     public function name($name)
@@ -54,23 +57,21 @@ class Route
     {
         try {
             echo self::$app->router->resolve();
-        }
-        catch(NotFoundException $error){
-            $view = BASE_URL."/views/errors/404.php";
-            if(file_exists($view)){
-                echo view('errors.404',[
+        } catch (NotFoundException $error) {
+            $view = BASE_URL . "/views/errors/404.php";
+            if (file_exists($view)) {
+                echo view('errors.404', [
                     'pageTitle' => 'Page not found',
                     'code' => $error->getCode(),
                     'message' => $error->getMessage()
                 ]);
             }
-        }
-        catch (\Exception $error) {
+        } catch (\Exception $error) {
             http_response_code($error->getCode());
             print($error->getMessage());
-           if($error->getCode() === 302){
-               header("location:".$error->getMessage());
-           }
+            if ($error->getCode() === 302) {
+                header("location:" . $error->getMessage());
+            }
         }
     }
 }

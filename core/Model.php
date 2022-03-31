@@ -43,7 +43,7 @@ abstract class Model
             $value    = $operator;
             $operator = "=";
         }
-        
+
         if (empty($this->conditionString)) {
             throw new \Exception('Invalid orWhere() clouser', 500);
         }
