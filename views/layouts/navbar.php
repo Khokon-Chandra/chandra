@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
@@ -21,7 +21,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Clients</a>
+          <a class="nav-link" href="<?= route('clients.index') ?>">Clients</a>
         </li>
       </ul>
       <!-- Left links -->
@@ -29,7 +29,7 @@
       <div class="d-flex align-items-center">
         <form action="<?= route('login.destroy') ?>" method="POST">
           <?= csrf_token() ?>
-          <button type="submit" class="btn btn-primary px-3 me-2">Logout</button>
+          <button type="submit" class="btn btn-primary btn-sm px-3 me-2">Logout</button>
         </form>
       </div>
     </div>

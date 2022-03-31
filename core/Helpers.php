@@ -74,3 +74,9 @@ function dd($object)
     echo "<pre>";
     exit();
 }
+
+
+function app($classname)
+{
+    return new $classname();
+}

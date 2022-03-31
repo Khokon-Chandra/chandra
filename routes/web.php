@@ -1,5 +1,6 @@
 <?php
 
+use app\Controllers\ClientController;
 use core\Route;
 use app\Controllers\HomeController;
 use app\Controllers\NewsletterController;
@@ -11,6 +12,7 @@ include(BASE_URL."/routes/auth.php");
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/clients',[ClientController::class,'index'])->name('clients.index');
 });
 
 

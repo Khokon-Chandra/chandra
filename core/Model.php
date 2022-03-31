@@ -37,6 +37,24 @@ abstract class Model
         return $this;
     }
 
+    public function orWhere($columnName, $operator = null, $value = null)
+    {
+        if (func_num_args() === 2) {
+            $value    = $operator;
+            $operator = "=";
+        }
+        
+        if (empty($this->conditionString)) {
+            throw new \Exception('Invalid orWhere() clouser', 500);
+        }
+
+        $string = $columnName . $operator . "'$value'";
+        $this->conditionString .= " OR " . $string;
+        $this->conditionString = $string;
+        return $this;
+    }
+
+
     public function all()
     {
         $this->table = $this->table;
@@ -92,7 +110,7 @@ abstract class Model
             $statement->bindValue(":$key", $value);
         }
         $statement->execute();
-        return $this->where('id',$this->db->lastInsertId())->first();
+        return $this->where('id', $this->db->lastInsertId())->first();
     }
 
 

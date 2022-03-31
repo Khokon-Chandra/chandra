@@ -8,6 +8,7 @@
   <!-- Bootstrap CSS -->
   <title>Multisearch</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
   <link rel="stylesheet" href="<?= asset('css/toastr.min.css') ?>">
 </head>
 
@@ -15,7 +16,8 @@
 
   <?php include(BASE_URL . '/views/layouts/navbar.php')  ?>
 
-  <div class="container">
+  <div class="container-fluid">
+  <?= session_flash('success') ? "<div class='alert alert-success'>". session_flash('success')."</div>" :'' ?>
     <?= $slot ?>
   </div>
 
