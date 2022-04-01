@@ -10,7 +10,9 @@ class ClientController extends Controller
 {
     public function index(Request $request)
     {
-        // dd(app(Client::class)->select('country')->get());
+        foreach (app(Client::class)->all() as $model) {
+            dd($model);
+        }
         return view('client.index', [
             'countries' => app(Client::class)->select('country')->get(),
             'cities' => app(Client::class)->select('city')->get(),

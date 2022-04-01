@@ -2,6 +2,8 @@
 
 namespace core;
 
+use app\Models\Client;
+
 abstract class Model
 {
     private Database $db;
@@ -63,7 +65,8 @@ abstract class Model
         $this->table = $this->table;
         $statement  = $this->db->prepare("SELECT * FROM $this->table");
         $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_OBJ);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, Client::class);
+        return $statement->fetchAll();
     }
 
     public function get()

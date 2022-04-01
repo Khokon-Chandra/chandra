@@ -10,6 +10,17 @@ class Client extends Model
 
     protected $table = 'clients';
 
+    public function country()
+    {
+        // return $this->belongsTo(Country::class,'counrty_id','id');
+        return new Country();
+    }
+
+    public function city()
+    {
+        // return $this->belongsTo(City::class,'city_id','id');
+        return new City();
+    }
 
     public function filter($filters)
     {
