@@ -1,4 +1,4 @@
-<div class="accordion mb-5 shadow rounded" id="accordionExample">
+<div class="accordion mb-4 shadow-sm rounded" id="accordionExample">
     <div class="accordion-item">
         <div class="border-bottom" id="headingOne">
             <h4 class="p-2 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -17,15 +17,15 @@
                             <input type="number" name="postcode" id="postcode" class="form-control mb-3" placeholder="Post Code">
                             <select name="country" id="country" class="form-select mb-3">
                                 <option value="">Country</option>
-                                <option value="">Bangladesh</option>
-                                <option value="">India</option>
-                                <option value="">America</option>
+                                <?php foreach($countries as $country){
+                                    printf('<option value="%s">%s</option>',$country->country,$country->country);
+                                } ?>
                             </select>
                             <select name="city" id="city" class="form-select mb-3">
                                 <option value="">City name</option>
-                                <option value="">Dhaka</option>
-                                <option value="">Dilhi</option>
-                                <option value="">New yourk</option>
+                                <?php foreach($cities as $city){
+                                    printf('<option value="%s">%s</option>',$city->city,$city->city);
+                                } ?>
                             </select>
 
                         </div>

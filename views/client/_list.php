@@ -1,7 +1,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th><input type="checkbox" class="form-check-input"></th>
+            <th><input id="checkAll" type="checkbox" class="form-check-input"></th>
             <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -11,7 +11,7 @@
             <th>Address</th>
             <th>Type</th>
             <th>Status</th>
-            <th class="text-center">Action</th>
+            <th class="text-center" width="150px">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
             );
             printf(
                 '<tr>
-                    <td><input type="checkbox" class="form-check-input"></td>
+                    <td><input type="checkbox" class="checkbox form-check-input"></td>
                     <td>%d</td>
                     <td>%s</td>
                     <td>%s</td>

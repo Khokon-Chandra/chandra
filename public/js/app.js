@@ -43,3 +43,14 @@ $(document).on('change','#limit',function(){
   $('#count').val($(this).val());
   $('#searchForm').trigger('submit');
 })
+
+
+
+$("#checkAll").click(function(){
+  var check = $(this).prop('checked');
+  if(check == true) {
+    $('.checkbox').prop('checked', true);
+  } else {
+    $('.checkbox').prop('checked', false);
+  }
+});
