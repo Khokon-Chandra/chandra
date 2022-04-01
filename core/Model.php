@@ -32,12 +32,13 @@ abstract class Model
             $value    = $operator;
             $operator = "=";
         }
-        $string = $columnName . $operator . "'$value'";
+        $string = "$columnName $operator " . "'$value'";
         if (!empty($this->conditionString)) {
             $this->conditionString .= " AND " . $string;
-            return $this;
+        } else {
+
+            $this->conditionString = $string;
         }
-        $this->conditionString = $string;
         return $this;
     }
 
@@ -51,10 +52,8 @@ abstract class Model
         if (empty($this->conditionString)) {
             throw new \Exception('Invalid orWhere() clouser', 500);
         }
-
-        $string = $columnName . $operator . "'$value'";
+        $string = "$columnName $operator " . "'$value'";
         $this->conditionString .= " OR " . $string;
-        $this->conditionString = $string;
         return $this;
     }
 
@@ -106,18 +105,18 @@ abstract class Model
         $offset    = $pageCount > 0 ? (intval($pageCount) - 1) * $limit : 0;
         $limitSql  = " LIMIT $offset, $limit";
 
-        if (empty($this->sql)) {
-            $sql = "SELECT * FROM $this->table " . $limitSql;
+        if (!empty($this->conditionString)) {
+            $sql = "SELECT * FROM $this->table WHERE $this->conditionString " . $limitSql;
         } else {
-            $sql = $this->sql . $limitSql;
+
+            $sql = "SELECT * FROM $this->table" . $limitSql;
         }
 
+       
         $this->statement = $this->db->prepare($sql);
         $this->statement->execute();
         $data = $this->statement->fetchAll(\PDO::FETCH_OBJ);
 
-        
-       
         $stmp = $this->db->prepare("SELECT COUNT(*) as aggregate FROM $this->table");
         $stmp->execute();
         $aggregate = $stmp->fetchObject()->aggregate;
@@ -126,7 +125,7 @@ abstract class Model
             "aggregate"   => $aggregate,
             "data"        => $data,
             "currentPage" => $this->request->page ?? 1,
-            "path"        => APP_URL.$this->request->getPath(),
+            "path"        => APP_URL . $this->request->getPath(),
         ]);
 
         return $paginate;
@@ -256,5 +255,14 @@ abstract class Model
             "foreign_key" => $foreign_key,
             "owner_key" => $owner_key,
         ];
+    }
+
+
+    protected function when($status, $callback)
+    {
+        if ($status) {
+            call_user_func($callback, ...[$this, $status]);
+        }
+        return $this;
     }
 }

@@ -58,6 +58,7 @@ class Route
         try {
             echo self::$app->router->resolve();
         } catch (NotFoundException $error) {
+            http_response_code($error->getCode());
             $view = BASE_URL . "/views/errors/404.php";
             if (file_exists($view)) {
                 echo view('errors.404', [

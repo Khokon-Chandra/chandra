@@ -44,7 +44,7 @@ class LoginController extends Controller
             $request->session->setFlashMessage('success', 'Successfully Loged in');
             redirect('/');
         }
-
+        $this->session->setFlashMessage('errors', ['email'=>'credential mis-match']);
         redirect('/login');
     }
 

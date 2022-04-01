@@ -11,9 +11,12 @@ include(BASE_URL."/routes/auth.php");
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/clients',[ClientController::class,'index'])->name('clients.index');
 
+
+    Route::resource('clients', ClientController::class);
     Route::resource('users', UserController::class);
+
+    Route::post('clients/search',[ClientController::class,'search'])->name('clients.search');
 });
 
 

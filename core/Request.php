@@ -41,6 +41,11 @@ class Request extends Validation
         return false;
     }
 
+    private function getTokenWhenIsAjax()
+    {
+        return $_SERVER['X-CSRF-TOKEN'];
+    }
+
 
     public function validate(array $rules = [])
     {
@@ -115,9 +120,7 @@ class Request extends Validation
     {
         $attributes = $this->getBody();
         $token = $attributes['_token'] ?? false;
-        if ($token === false) {
-            return false;
-        }
+
         if ($token !== $this->session->getToken()) {
             return false;
         }
