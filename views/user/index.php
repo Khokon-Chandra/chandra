@@ -1,6 +1,5 @@
 <x-layouts.app>
 
-
     <div class="card">
         <h5 class="card-header d-flex justify-content-between">
             <select name="" id="">

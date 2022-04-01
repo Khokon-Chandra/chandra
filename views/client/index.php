@@ -15,7 +15,6 @@
         <div id="ajaxContent">
             <?php include BASE_URL."/views/client/_list.php" ?>
         </div>
-        <?= $clients->links() ?>
     </div>
 
 </x-layouts.app>

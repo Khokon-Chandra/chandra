@@ -107,17 +107,18 @@ abstract class Model
 
         if (!empty($this->conditionString)) {
             $sql = "SELECT * FROM $this->table WHERE $this->conditionString " . $limitSql;
+            $aggregateSql = "SELECT COUNT(*) as aggregate FROM $this->table WHERE $this->conditionString";
         } else {
-
             $sql = "SELECT * FROM $this->table" . $limitSql;
+            $aggregateSql = "SELECT COUNT(*) as aggregate FROM $this->table";
         }
 
-       
+
         $this->statement = $this->db->prepare($sql);
         $this->statement->execute();
         $data = $this->statement->fetchAll(\PDO::FETCH_OBJ);
 
-        $stmp = $this->db->prepare("SELECT COUNT(*) as aggregate FROM $this->table");
+        $stmp = $this->db->prepare($aggregateSql);
         $stmp->execute();
         $aggregate = $stmp->fetchObject()->aggregate;
         $paginate = new Paginate([

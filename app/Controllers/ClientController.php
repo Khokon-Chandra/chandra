@@ -11,7 +11,7 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         return view('client.index', [
-            'clients' => app(Client::class)->filter($request)->paginate(10)
+            'clients' => app(Client::class)->filter($request)->paginate(15)
         ]);
     }
 
@@ -19,7 +19,7 @@ class ClientController extends Controller
     {
 
         return view('client._list', [
-            'clients' => app(Client::class)->filter($request)->paginate(10)
+            'clients' => app(Client::class)->filter($request)->paginate($request->count ?? 15)
         ]);
     }
 

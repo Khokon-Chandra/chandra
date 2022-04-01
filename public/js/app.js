@@ -1,20 +1,4 @@
-// $(document).ready(function () {
-//   $("#news-letters").submit(function (event) {
-//     event.preventDefault();
-//     axios
-//       .post(this.action, $(this).serialize(), {
-//         headers: { "X-Requested-With": "XMLHttpRequest" },
-//       })
-//       .then((response) => {
-//         toastr.success(response.data);
-//         console.log(response.data);
-//       })
-//       .catch((error) => {
-//         toastr.error(error.response.data.email);
-//         console.log(error.response.data);
-//       });
-//   });
-// });
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 //show spinner
 const showSpinner = () => {
@@ -29,24 +13,33 @@ const hideSpinner = () => {
   $("#filter").html("Filter");
 };
 
-$(document).ready(function () {
-  axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+const showBorderSpinner = () => {
+  $("#ajaxContent")
+    .html(`<div class="text-center my-3 p-4"><div class="spinner-border text-secondary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div></div>`);
+};
 
-  $(document).on("click", "#filter", function () {
-    let url = $("#searchForm").attr("action");
-    let formValue = $("#searchForm").serialize();
+$("#searchForm").submit(function (event) {
+  event.preventDefault();
+  let url = $(this).attr("action");
+  let formValue = $(this).serialize();
 
-    showSpinner();
-    axios
-      .post(url, formValue)
-      .then((response) => {
-        console.log(response.data);
-        hideSpinner();
-        $('#ajaxContent').html(response.data);
-      })
-      .catch((error) => {
-        hideSpinner();
-        console.log(error.response.data);
-      });
-  });
+  showSpinner();
+  showBorderSpinner();
+  axios
+    .post(url, formValue)
+    .then((response) => {
+      hideSpinner();
+      $("#ajaxContent").html(response.data);
+    })
+    .catch((error) => {
+      hideSpinner();
+    });
 });
+
+
+$(document).on('change','#limit',function(){
+  $('#count').val($(this).val());
+  $('#searchForm').trigger('submit');
+})

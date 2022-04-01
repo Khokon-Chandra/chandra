@@ -16,7 +16,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('clients', ClientController::class);
     Route::resource('users', UserController::class);
 
-    Route::post('clients/search',[ClientController::class,'search'])->name('clients.search');
+    Route::post('clients',[ClientController::class,'search'])->name('clients.search');
 });
 
 

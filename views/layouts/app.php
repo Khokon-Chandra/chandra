@@ -15,9 +15,10 @@
 
 <body>
 
+
   <?php include(BASE_URL . '/views/layouts/navbar.php')  ?>
 
-  <div class="container">
+  <div class="container py-4">
     <?= session_flash('success') ? "<div class='alert alert-success'>" . session_flash('success') . "</div>" : '' ?>
     <?= $slot ?>
   </div>

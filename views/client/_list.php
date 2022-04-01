@@ -1,6 +1,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th><input type="checkbox" class="form-check-input"></th>
             <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -25,6 +26,7 @@
             );
             printf(
                 '<tr>
+                    <td><input type="checkbox" class="form-check-input"></td>
                     <td>%d</td>
                     <td>%s</td>
                     <td>%s</td>
@@ -43,7 +45,7 @@
                 $client->country,
                 $client->city,
                 $client->address,
-                $client->typ,
+                $client->type,
                 $client->status,
                 $action
             );
@@ -51,3 +53,4 @@
         ?>
     </tbody>
 </table>
+<?= $clients->links() ?>
