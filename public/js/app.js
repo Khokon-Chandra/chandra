@@ -1,14 +1,14 @@
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 //show spinner
-const showSpinner = () => {
+const showButtonSpinner = () => {
   $("#filter").attr("disabled", true);
   $("#filter")
     .html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   Loading...`);
 };
 
-const hideSpinner = () => {
+const hideButtonSpinner = () => {
   $("#filter").removeAttr("disabled");
   $("#filter").html("Filter");
 };
@@ -20,21 +20,27 @@ const showBorderSpinner = () => {
 </div></div>`);
 };
 
+const hideBorderSpinner = () => {
+  $("#ajaxContent")
+    .html(`No records found`);
+};
+
 $("#searchForm").submit(function (event) {
   event.preventDefault();
   let url = $(this).attr("action");
   let formValue = $(this).serialize();
 
-  showSpinner();
+  showButtonSpinner();
   showBorderSpinner();
   axios
     .post(url, formValue)
     .then((response) => {
-      hideSpinner();
+      hideButtonSpinner();
       $("#ajaxContent").html(response.data);
     })
     .catch((error) => {
-      hideSpinner();
+      hideButtonSpinner();
+      hideBorderSpinner();
     });
 });
 

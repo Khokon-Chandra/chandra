@@ -9,15 +9,9 @@ abstract class Model
     private Database $db;
     private Request $request;
     private string $conditionString = '';
-    private $statement;
+    private $relations = [];
 
-    private $relationName;
-
-    private $belongsTo;
-    private $foreign_key;
-    private $owner_key;
-
-    private $sql = '';
+    private $selectSql;
 
     protected  $table;
 
@@ -25,6 +19,7 @@ abstract class Model
     {
         $this->db = Route::$app->db;
         $this->request = Route::$app->request;
+        $this->selectSql = "SELECT * FROM $this->table";
     }
 
 
@@ -60,44 +55,108 @@ abstract class Model
     }
 
 
+    public function whereIn(string $columnName, array $values)
+    {
+        $value = rtrim(implode(',', $values), ',');
+        $this->conditionString = "$this->table.$columnName IN ($value)";
+        return $this;
+    }
+
+
     public function all()
     {
-        $this->table = $this->table;
-        $statement  = $this->db->prepare("SELECT * FROM $this->table");
+        $statement  = $this->db->prepare($this->selectSql);
         $statement->execute();
-        $statement->setFetchMode(\PDO::FETCH_CLASS, Client::class);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         return $statement->fetchAll();
     }
 
     public function get()
     {
-        if (!empty($this->setBelongsTo())) {
-            return $this->setBelongsTo();
+
+        if (!empty($this->conditionString)) {
+            $this->selectSql .= " WHERE $this->conditionString";
         }
-        $this->statement->execute();
-        return $this->statement->fetchAll(\PDO::FETCH_OBJ);
+
+        $statement = $this->db->prepare($this->selectSql);
+        $statement->execute();
+
+        $data = $statement->fetchAll(\PDO::FETCH_CLASS, get_called_class());
+        return $this->hasRelation($data);
     }
+
+    public function pluck(...$fields)
+    {
+        $columnName = implode(',', $fields);
+
+        $sql = "SELECT $columnName FROM $this->table";
+        if (!empty($this->conditionString)) {
+            $sql = "SELECT $columnName FROM $this->table WHERE $this->conditionString";
+        }
+
+        $statement = $this->db->prepare($sql);
+        $statement->execute();
+        if (count($fields) > 1) {
+            $data = $statement->fetchAll(\PDO::FETCH_KEY_PAIR);
+        } else {
+            $data = $statement->fetchAll(\PDO::FETCH_COLUMN, 0);
+        }
+        return $data;
+    }
+
+    private function pair_parent_child($parents, $ownerKey, $foreignKey)
+    {
+        foreach ($parents as $parent) {
+            if ($foreignKey == $parent->{$ownerKey}) {
+                return $parent;
+            }
+        }
+        return null;
+    }
+
+    private function hasRelation($data)
+    {
+
+        if (empty($this->relations)) {
+            return $data;
+        }
+
+        foreach ($this->relations as $relation => $property) {
+            $parentClass = $property['modelname'];
+            $ownerKey    = $property['owner_key'];
+            $foreignKey  = $property['foreign_key'];
+            if (is_array($data)) :
+                $values = $this->pluck('id');
+                $parents = (new $parentClass())->whereIn($ownerKey, $values)->get();
+                foreach ($data as $key => $model) {
+                    $data[$key]->{$relation} = $this->pair_parent_child($parents, $ownerKey, $model->{$foreignKey});
+                }
+            else :
+                $values     = [$data->id];
+                $parent     = (new $parentClass())->where($ownerKey, $data->id)->first();
+                $data->{$relation} = $parent;
+            endif;
+        }
+
+        return $data;
+    }
+
 
     public function first()
     {
-        if ($this->statement === null) {
-            $this->table = $this->table;
-            $sql       = "SELECT * FROM $this->table";
-            if (!empty($this->conditionString)) {
-                $sql = "SELECT * FROM $this->table WHERE $this->conditionString";
-            }
-            $this->statement = $this->db->prepare($sql);
+        if (!empty($this->conditionString)) {
+            $this->selectSql .= " WHERE $this->conditionString";
         }
-
-        $this->statement->execute();
-        return $this->statement->fetchObject();
+        $statement = $this->db->prepare($this->selectSql);
+        $statement->execute();
+        $data = $statement->fetchObject(get_called_class());
+        return $this->hasRelation($data);
     }
 
     public function select(...$fields)
     {
         $placeholders = implode(',', $fields);
-        $this->table = $this->table;
-        $this->statement = $this->db->prepare("SELECT $placeholders FROM $this->table");
+        $this->selectSql = "SELECT $placeholders FROM $this->table";
         return $this;
     }
 
@@ -117,13 +176,18 @@ abstract class Model
         }
 
 
-        $this->statement = $this->db->prepare($sql);
-        $this->statement->execute();
-        $data = $this->statement->fetchAll(\PDO::FETCH_OBJ);
+        $statement = $this->db->prepare($sql);
+        $statement->execute();
 
-        $stmp = $this->db->prepare($aggregateSql);
-        $stmp->execute();
-        $aggregate = $stmp->fetchObject()->aggregate;
+        $data = $statement->fetchAll(\PDO::FETCH_CLASS, get_called_class());
+
+        $this->conditionString = '';
+        $data = $this->hasRelation($data);
+
+        $statement = $this->db->prepare($aggregateSql);
+        $statement->execute();
+        $aggregate = $statement->fetchObject()->aggregate;
+
         $paginate = new Paginate([
             "limit"       => $limit,
             "aggregate"   => $aggregate,
@@ -204,58 +268,18 @@ abstract class Model
     }
 
 
-
-    private function setBelongsTo()
+    public function with(...$relations)
     {
-        if (is_null($this->belongsTo)) return false;
-
-        $this->table = $this->table;
-        $sql = "SELECT * FROM $this->table";
-        $statement = $this->db->prepare($sql);
-        $statement->execute();
-        $childmodel = $statement->fetchAll(\PDO::FETCH_OBJ);
-
-        $id = [];
-        foreach ($childmodel as $child) {
-            $id[] = $child->{$this->foreign_key};
+        foreach ($relations as $relation) {
+            $this->relations[$relation] = $this->{$relation}();
         }
-        $id = implode(',', $id);
-        $parentTable = $this->belongsTo->table;
-        $sql = "SELECT * FROM $parentTable WHERE $this->owner_key IN ($id)";
-        $statement = $this->db->prepare($sql);
-        $statement->execute();
-        $parentmodel = $statement->fetchAll(\PDO::FETCH_OBJ);
-
-        $model = [];
-        foreach ($childmodel as $child) {
-            foreach ($parentmodel as $parent) {
-                if ($child->{$this->foreign_key} == $parent->{$this->owner_key}) {
-                    $child->{$this->relationName} = $parent;
-                }
-            }
-            $model[] = $child;
-        }
-
-        return $model;
-    }
-
-
-    public function with($relation)
-    {
-        $this->relationName = $relation;
-        $className          = get_called_class();
-        $model              = new $className;
-        $relationInfo       = $model->$relation();
-        $this->belongsTo    = $relationInfo["belongsTo"];
-        $this->foreign_key  = $relationInfo["foreign_key"];
-        $this->owner_key    = $relationInfo["owner_key"];
         return $this;
     }
 
-    public function belongsTo($Model, $foreign_key, $owner_key)
+    public function belongsTo($parentClass, $foreign_key, $owner_key)
     {
         return [
-            "belongsTo" => new $Model(),
+            "modelname" => $parentClass,
             "foreign_key" => $foreign_key,
             "owner_key" => $owner_key,
         ];

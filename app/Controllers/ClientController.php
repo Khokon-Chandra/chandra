@@ -3,20 +3,20 @@
 namespace App\Controllers;
 
 use app\Controllers\Controller;
+use app\Models\City;
 use app\Models\Client;
+use app\Models\Country;
 use core\Request;
 
 class ClientController extends Controller
 {
     public function index(Request $request)
     {
-        foreach (app(Client::class)->all() as $model) {
-            dd($model);
-        }
+        
         return view('client.index', [
-            'countries' => app(Client::class)->select('country')->get(),
-            'cities' => app(Client::class)->select('city')->get(),
-            'clients' => app(Client::class)->filter($request)->paginate(15)
+            'countries' => app(Country::class)->all(),
+            'cities' => app(City::class)->all(),
+            'clients' => app(Client::class)->with('country','city')->filter($request)->paginate(15)
         ]);
     }
 
@@ -24,7 +24,7 @@ class ClientController extends Controller
     {
 
         return view('client._list', [
-            'clients' => app(Client::class)->filter($request)->paginate($request->count ?? 15)
+            'clients' => app(Client::class)->with('country','city')->filter($request)->paginate($request->count ?? 15)
         ]);
     }
 

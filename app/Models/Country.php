@@ -3,9 +3,8 @@
 namespace app\Models;
 
 use core\Model;
-use core\ModelTrait;
 
-class Client extends Model
+class Country extends Model
 {
 
     protected $table = 'countries';

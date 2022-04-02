@@ -18,13 +18,13 @@
                             <select name="country" id="country" class="form-select mb-3">
                                 <option value="">Country</option>
                                 <?php foreach($countries as $country){
-                                    printf('<option value="%s">%s</option>',$country->country,$country->country);
+                                    printf('<option value="%d">%s</option>',$country->id,$country->name);
                                 } ?>
                             </select>
                             <select name="city" id="city" class="form-select mb-3">
                                 <option value="">City name</option>
                                 <?php foreach($cities as $city){
-                                    printf('<option value="%s">%s</option>',$city->city,$city->city);
+                                    printf('<option value="%d">%s</option>',$city->id,$city->name);
                                 } ?>
                             </select>
 
@@ -56,6 +56,7 @@
                     </div>
                     <div class="mb-3 text-center">
                         <button id="filter" class="btn btn-info" type="submit">Filter</button>
+                        <button id="filter" class="btn btn-warning" type="reset">Reset</button>
                     </div>
                 </form>
             </div>

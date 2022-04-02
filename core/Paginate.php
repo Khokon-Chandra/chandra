@@ -37,6 +37,9 @@ class Paginate
     {
 
         $offset = ($this->currentPage - 1) * $this->perPage;
+        if(count($this->data)==0){
+            return 0;
+        }
         return $offset + 1;
     }
 

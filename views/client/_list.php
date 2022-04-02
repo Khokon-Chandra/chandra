@@ -15,9 +15,7 @@
         </tr>
     </thead>
     <tbody>
-
         <?php
-
         foreach ($clients->data as $client) {
             $action = sprintf(
                 '<a href="#" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
@@ -42,13 +40,17 @@
                 $client->firstname,
                 $client->lastname,
                 $client->company,
-                $client->country,
-                $client->city,
+                $client->country->name,
+                $client->city->name,
                 $client->address,
                 $client->type,
                 $client->status,
                 $action
             );
+        }
+
+        if(count($clients->data) == 0){
+            printf('<tr class="text-center"><th colspan="11">No records found</th></tr>');
         }
         ?>
     </tbody>
