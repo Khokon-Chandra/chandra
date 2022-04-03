@@ -2,8 +2,6 @@
 
 use app\Exceptions\HttpRedirectException;
 use core\Route;
-use core\Session;
-use core\View;
 
 
 $route = new Route();
@@ -49,9 +47,9 @@ function route($name, $params = [])
         Route::$app->view->renderError("Route name <i class='text-danger'>$name</i> not found");
         return Route::$view->viewContent;
     }
-    if(!empty($params)){
-        foreach($params as $key=>$value){
-            $routeName = str_replace("{{$key}}",$value,$routeName);
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            $routeName = str_replace("{{$key}}", $value, $routeName);
         }
     }
     return $routeName;

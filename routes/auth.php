@@ -1,7 +1,7 @@
 <?php
 
-use app\Controllers\Auth\ForgotPasswordController;
 use core\Route;
+use app\Controllers\Auth\ForgotPasswordController;
 use app\Controllers\Auth\LoginController;
 use app\Controllers\Auth\RegisterController;
 

@@ -4,7 +4,8 @@ namespace core;
 
 use app\Controllers\Controller;
 use app\Exceptions\NotFoundException;
-use core\Exceptions\DbException;
+use app\Exceptions\HttpRedirectException;
+use core\Database\Database;
 
 class Route
 {
@@ -56,23 +57,25 @@ class Route
     public function run()
     {
         try {
-            echo self::$app->router->resolve();
+            return self::$app->router->resolve();
         } catch (NotFoundException $error) {
             http_response_code($error->getCode());
             $view = BASE_URL . "/views/errors/404.php";
             if (file_exists($view)) {
-                echo view('errors.404', [
+                return view('errors.404', [
                     'pageTitle' => 'Page not found',
                     'code' => $error->getCode(),
                     'message' => $error->getMessage()
                 ]);
+            } else {
+                return $error->getMessage();
             }
+        } catch (HttpRedirectException $error) {
+            http_response_code($error->getCode());
+            header("location:" . $error->getMessage());
         } catch (\Exception $error) {
             http_response_code($error->getCode());
-            print($error->getMessage());
-            if ($error->getCode() === 302) {
-                header("location:" . $error->getMessage());
-            }
+            return $error->getMessage();
         }
     }
 }

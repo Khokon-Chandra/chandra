@@ -2,7 +2,7 @@
 
 namespace app\Models;
 
-use core\Model;
+use core\Database\Model;
 
 class Client extends Model
 {
@@ -18,6 +18,16 @@ class Client extends Model
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function linkCp()
+    {
+        return $this->hasMany(LinkCp::class,'client_id','id');
+    }
+
+    public function linkSp()
+    {
+        return $this->hasMany(LinkSp::class,'client_id','id');
     }
 
     public function filter($filters)

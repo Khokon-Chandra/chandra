@@ -1,11 +1,20 @@
 <?php
 
-namespace core;
+namespace core\Database;
 
-use app\Models\Client;
+use core\Database\Traits\ConditionString;
+use core\Database\Traits\Relations;
+use core\Request;
+use core\Route;
 
 abstract class Model
 {
+    use ConditionString, Relations;
+
+    const BELONGSTO = 'belongsTo';
+    const HASMANY   = 'hasMany';
+
+
     private Database $db;
     private Request $request;
     private string $conditionString = '';
@@ -20,46 +29,6 @@ abstract class Model
         $this->db = Route::$app->db;
         $this->request = Route::$app->request;
         $this->selectSql = "SELECT * FROM $this->table";
-    }
-
-
-    public function where($columnName, $operator = null, $value = null)
-    {
-        if (func_num_args() === 2) {
-            $value    = $operator;
-            $operator = "=";
-        }
-        $string = "$columnName $operator " . "'$value'";
-        if (!empty($this->conditionString)) {
-            $this->conditionString .= " AND " . $string;
-        } else {
-
-            $this->conditionString = $string;
-        }
-        return $this;
-    }
-
-    public function orWhere($columnName, $operator = null, $value = null)
-    {
-        if (func_num_args() === 2) {
-            $value    = $operator;
-            $operator = "=";
-        }
-
-        if (empty($this->conditionString)) {
-            throw new \Exception('Invalid orWhere() clouser', 500);
-        }
-        $string = "$columnName $operator " . "'$value'";
-        $this->conditionString .= " OR " . $string;
-        return $this;
-    }
-
-
-    public function whereIn(string $columnName, array $values)
-    {
-        $value = rtrim(implode(',', $values), ',');
-        $this->conditionString = "$this->table.$columnName IN ($value)";
-        return $this;
     }
 
 
@@ -104,42 +73,7 @@ abstract class Model
         return $data;
     }
 
-    private function pair_parent_child($parents, $ownerKey, $foreignKey)
-    {
-        foreach ($parents as $parent) {
-            if ($foreignKey == $parent->{$ownerKey}) {
-                return $parent;
-            }
-        }
-        return null;
-    }
 
-    private function hasRelation($data)
-    {
-
-        if (empty($this->relations)) {
-            return $data;
-        }
-
-        foreach ($this->relations as $relation => $property) {
-            $parentClass = $property['modelname'];
-            $ownerKey    = $property['owner_key'];
-            $foreignKey  = $property['foreign_key'];
-            if (is_array($data)) :
-                $values = $this->pluck('id');
-                $parents = (new $parentClass())->whereIn($ownerKey, $values)->get();
-                foreach ($data as $key => $model) {
-                    $data[$key]->{$relation} = $this->pair_parent_child($parents, $ownerKey, $model->{$foreignKey});
-                }
-            else :
-                $values     = [$data->id];
-                $parent     = (new $parentClass())->where($ownerKey, $data->id)->first();
-                $data->{$relation} = $parent;
-            endif;
-        }
-
-        return $data;
-    }
 
 
     public function first()
@@ -270,20 +204,15 @@ abstract class Model
 
     public function with(...$relations)
     {
+
         foreach ($relations as $relation) {
             $this->relations[$relation] = $this->{$relation}();
         }
+
         return $this;
     }
 
-    public function belongsTo($parentClass, $foreign_key, $owner_key)
-    {
-        return [
-            "modelname" => $parentClass,
-            "foreign_key" => $foreign_key,
-            "owner_key" => $owner_key,
-        ];
-    }
+
 
 
     protected function when($status, $callback)

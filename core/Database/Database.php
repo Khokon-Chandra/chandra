@@ -1,9 +1,7 @@
 <?php
 
 
-namespace core;
-
-use core\Exceptions\DbException;
+namespace core\Database;
 
 class Database extends \PDO
 {

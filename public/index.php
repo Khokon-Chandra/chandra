@@ -9,4 +9,4 @@ require_once "../core/Helpers.php";
 require_once "../routes/web.php";
 
 
-$route->run();
+echo $route->run();

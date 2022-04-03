@@ -4,10 +4,9 @@ namespace app\Models;
 
 use core\Database\Model;
 
-class City extends Model
+class LinkSp extends Model
 {
 
-    protected $table = 'cities';
-
+    protected $table = 'link_sp';
     
 }
