@@ -1,4 +1,4 @@
-<div class="accordion mb-4 shadow-sm rounded" id="accordionExample">
+<div class="accordion mb-4 shadow rounded" id="accordionExample">
     <div class="accordion-item">
         <div class="border-bottom" id="headingOne">
             <h4 class="p-2 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -34,17 +34,17 @@
                             <input type="email" name="email" id="email" class="form-control mb-3" placeholder="Email Address">
                             <select name="type" id="type" class="form-select mb-3">
                                 <option value="">Type</option>
-                                <option value="">customer type</option>
-                                <option value="">customer type</option>
-                                <option value="">customer type</option>
+                               <?php foreach($types as $key => $value){
+                                   printf('<option value="%d">%s</option>',$key,$value);
+                               } ?>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <select name="status" id="status" class="form-select mb-3">
                                 <option value="">Status</option>
-                                <option value="">customer type</option>
-                                <option value="">customer type</option>
-                                <option value="">customer type</option>
+                                <?php foreach($status as $key => $value){
+                                   printf('<option value="%d">%s</option>',$key,$value);
+                               } ?>
                             </select>
                             <div class="row mb-3">
                                 <div class="col-6"><input type="text" name="link_cp" id="link_cp" class="form-control" placeholder="Link CP"></div>

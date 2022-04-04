@@ -30,6 +30,15 @@ class Client extends Model
         return $this->hasMany(LinkSp::class,'client_id','id');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(ClientNote::class,'client_id','id');
+    }
+    public function sections()
+    {
+        return $this->hasMany(SectionLink::class,'client_id','id');
+    }
+
     public function filter($filters)
     {
         $this
@@ -54,7 +63,7 @@ class Client extends Model
             $query->where('email', $email))
 
             ->when($filters->type ?? false, fn ($query, $type) =>
-            $query->where('type', $type))
+            $query->where('type', $type)) 
 
             ->when($filters->status ?? false, fn ($query, $status) =>
             $query->where('status', $status));

@@ -12,7 +12,10 @@
                 <th>Address</th>
                 <th>Type</th>
                 <th>Status</th>
-                <th>Sp|Cp</th>
+                <th>S</th>
+                <th>N</th>
+                <th>SP</th>
+                <th>CP</th>
                 <th class="text-center" width="150px">Action</th>
             </tr>
         </thead>
@@ -36,10 +39,10 @@
                     <td>%s</td>
                     <td>%s</td>
                     <td>%s</td>
-                    <td>
-                        <a class="btn btn-sm btn-outline-primary" href="#">%d</a>
-                        <a class="btn btn-sm btn-outline-success" href="#">%d</a>
-                    </td>
+                    <td><a class="btn btn-sm btn-outline-primary" href="#">%d</a></td>
+                    <td><a class="btn btn-sm btn-outline-success" href="#">%d</a></td>
+                    <td><a class="btn btn-sm btn-outline-info" href="#">%d</a></td>
+                    <td><a class="btn btn-sm btn-outline-success" href="#">%d</a></td>
                     <td>%s</td>
                 </tr>',
                     1,
@@ -51,6 +54,8 @@
                     $client->address,
                     $client->type,
                     $client->status,
+                    count($client->sections),
+                    count($client->notes),
                     count($client->linkSp),
                     count($client->linkCp),
                     $action
