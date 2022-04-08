@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Khokon-Chandra/mvc-core.git",
-                "reference": "bdb09686b20376f69674095f22d4ae2a1e0d3b0d"
+                "reference": "78fd1539063edfdf88b6c43eed5aaaf2f99cf9e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/bdb09686b20376f69674095f22d4ae2a1e0d3b0d",
-                "reference": "bdb09686b20376f69674095f22d4ae2a1e0d3b0d",
+                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/78fd1539063edfdf88b6c43eed5aaaf2f99cf9e3",
+                "reference": "78fd1539063edfdf88b6c43eed5aaaf2f99cf9e3",
                 "shasum": ""
             },
             "type": "library",
@@ -38,7 +38,7 @@
                 "issues": "https://github.com/Khokon-Chandra/mvc-core/issues",
                 "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.0.0"
             },
-            "time": "2022-04-08T07:47:48+00:00"
+            "time": "2022-04-08T10:11:32+00:00"
         }
     ],
     "packages-dev": [],
