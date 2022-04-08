@@ -6,18 +6,13 @@
             "app\\Controllers\\" : "app/Controllers/",
             "app\\Models\\" : "app/Models/",
             "app\\Exceptions\\" : "app/Exceptions/",
-            "app\\Middleware\\" : "app/Middleware/",
-            "khokonc\mvc\mvc\\Database\\" : "khokonc\mvc/Database/",
-            "khokonc\mvc\\Database\\Traits\\" : "khokonc\mvc/Database/Traits/",
-            "khokonc\mvc\\Exceptions\\" : "khokonc\mvc/Exceptions/",
-            "khokonc\mvc\\" : "khokonc\mvc/"
-            
+            "app\\Middleware\\" : "app/Middlewares/"
         }
     },
     "authors": [
         {
             "name": "Khokon-Chandra",
-            "email": "khokonc\mvchandra4@gmail.com"
+            "email": "khokonchandra4@gmail.com"
         }
     ],
     "require": {}
