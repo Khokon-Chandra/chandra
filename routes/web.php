@@ -1,9 +1,9 @@
 <?php
 
-use khokonc\mvc\Route\Route;
-use app\Controllers\ClientController;
-use app\Controllers\HomeController;
-use app\Controllers\UserController;
+use Khokonc\Mvc\Routes\Route;
+use App\Controllers\ClientController;
+use App\Controllers\HomeController;
+use App\Controllers\UserController;
 
 //auth routes
 include(BASE_URL."/routes/auth.php");

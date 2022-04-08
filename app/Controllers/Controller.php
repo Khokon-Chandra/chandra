@@ -1,10 +1,10 @@
 <?php
-namespace app\Controllers;
+namespace App\Controllers;
 
-use app\Kernel;
+use App\Kernel;
 use khokonc\mvc\Auth;
 use khokonc\mvc\Request;
-use khokonc\mvc\Route\Route;
+use Khokonc\Mvc\Routes\Route;
 use khokonc\mvc\Session;
 
 class Controller{

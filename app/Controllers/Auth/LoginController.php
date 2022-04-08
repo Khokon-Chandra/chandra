@@ -1,9 +1,9 @@
 <?php
 
-namespace app\Controllers\Auth;
+namespace App\Controllers\Auth;
 
-use app\Controllers\Controller;
-use app\Models\User;
+use App\Controllers\Controller;
+use App\Models\User;
 use khokonc\mvc\Auth;
 use khokonc\mvc\Request;
 

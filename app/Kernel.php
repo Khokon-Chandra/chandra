@@ -1,8 +1,8 @@
 <?php
 namespace app;
 
-use app\Middlewares\AuthMiddleware;
-use app\Middlewares\GuestMiddleware;
+use App\Middlewares\AuthMiddleware;
+use App\Middlewares\GuestMiddleware;
 
 class Kernel
 {

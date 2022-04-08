@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use app\Models\City;
-use app\Models\Client;
-use app\Models\Country;
+use App\Models\City;
+use App\Models\Client;
+use App\Models\Country;
 use khokonc\mvc\Request;
 
 class ClientController extends Controller

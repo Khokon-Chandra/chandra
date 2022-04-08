@@ -1,9 +1,9 @@
 <?php
-namespace app\Middlewares;
+namespace App\Middlewares;
 
 
 use khokonc\mvc\BaseMiddleware as Middleware;
-use khokonc\mvc\Route\Route;
+use Khokonc\Mvc\Routes\Route;
 
 class AuthMiddleware extends Middleware
 {

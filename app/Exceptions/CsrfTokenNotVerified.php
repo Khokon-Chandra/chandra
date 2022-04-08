@@ -1,5 +1,5 @@
 <?php
-namespace app\Exceptions;
+namespace App\Exceptions;
 
 class CsrfTokenNotVerified extends \Exception
 {

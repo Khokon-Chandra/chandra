@@ -1,10 +1,10 @@
 <?php
 
-namespace app\Controllers\Auth;
+namespace App\Controllers\Auth;
 
 use khokonc\mvc\Request;
-use app\Controllers\Controller;
-use app\Models\User;
+use App\Controllers\Controller;
+use App\Models\User;
 
 class RegisterController extends Controller
 {

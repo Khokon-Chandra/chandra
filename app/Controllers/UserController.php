@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use app\Controllers\Controller;
+use App\Controllers\Controller;
 use khokonc\mvc\Request;
-use app\Models\User;
+use App\Models\User;
 
 class UserController extends Controller
 {
