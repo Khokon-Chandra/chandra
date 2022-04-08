@@ -2,12 +2,14 @@
     "name": "cram3/login_system",
     "autoload": {
         "psr-4": {
-            "app\\" : "app/",
-            "app\\Controllers\\" : "app/Controllers/",
-            "app\\Models\\" : "app/Models/",
-            "app\\Exceptions\\" : "app/Exceptions/",
-            "app\\Middleware\\" : "app/Middlewares/"
+            "App\\" : "app/",
+            "App\\Controllers\\" : "app/Controllers/",
+            "App\\Models\\" : "app/Models/",
+            "App\\Exceptions\\" : "app/Exceptions/",
+            "App\\Middleware\\" : "app/Middlewares/",
+            "Khokonc\\Mvc\\" : "."
         }
+
     },
     "authors": [
         {
@@ -15,5 +17,7 @@
             "email": "khokonchandra4@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "khokonc/mvc-core": "^1.0"
+    }
 }

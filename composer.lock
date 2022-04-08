@@ -4,8 +4,43 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "960ca010510e3c0a80059d1317d1177e",
-    "packages": [],
+    "content-hash": "5672ea3598692d2b39f5ce07619ed628",
+    "packages": [
+        {
+            "name": "khokonc/mvc-core",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Khokon-Chandra/mvc-core.git",
+                "reference": "bdb09686b20376f69674095f22d4ae2a1e0d3b0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/bdb09686b20376f69674095f22d4ae2a1e0d3b0d",
+                "reference": "bdb09686b20376f69674095f22d4ae2a1e0d3b0d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "khokonc\\mvc\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Khokon-Chandra",
+                    "email": "khokonchandra4@gmail.com"
+                }
+            ],
+            "description": "php framework",
+            "support": {
+                "issues": "https://github.com/Khokon-Chandra/mvc-core/issues",
+                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.0.2"
+            },
+            "time": "2022-04-08T07:47:48+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
