@@ -1,5 +1,5 @@
 {
-    "name": "cram3/login_system",
+    "name": "khokonc/chandra",
     "autoload": {
         "psr-4": {
             "App\\" : "app/",
