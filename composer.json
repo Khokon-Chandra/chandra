@@ -1,0 +1,24 @@
+{
+    "name": "cram3/login_system",
+    "autoload": {
+        "psr-4": {
+            "app\\" : "app/",
+            "app\\Controllers\\" : "app/Controllers/",
+            "app\\Exceptions\\" : "app/Exceptions/",
+            "app\\Middleware\\" : "app/Middleware/",
+            "app\\Models\\" : "app/Models/",
+            "core\\Database\\" : "core/Database/",
+            "core\\Database\\Traits\\" : "core/Database/Traits/",
+            "core\\Exceptions\\" : "core/Exceptions/",
+            "core\\" : "core/"
+            
+        }
+    },
+    "authors": [
+        {
+            "name": "Khokon-Chandra",
+            "email": "khokonchandra4@gmail.com"
+        }
+    ],
+    "require": {}
+}
