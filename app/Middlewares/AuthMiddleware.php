@@ -3,7 +3,8 @@ namespace App\Middlewares;
 
 
 use khokonc\mvc\BaseMiddleware as Middleware;
-use Khokonc\Mvc\Routes\Route;
+use khokonc\mvc\Routes\Route;
+
 
 class AuthMiddleware extends Middleware
 {
