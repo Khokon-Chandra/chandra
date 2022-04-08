@@ -1,16 +1,16 @@
 <?php
 
-define('APP_KEY', "KD83475JDSFLJ9859H6LJ09Q34JF156446T42");
+const APP_KEY = "KD83475JSFL9859H6LJ09Q34JF156446T42";
 
-define('BASE_URL', __DIR__);
+const BASE_URL = __DIR__;
 
-define('APP_URL', 'http://localhost:8000');
+const APP_URL = 'http://localhost:8000';
 
 
 // database information
 
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'framework');
-define('USER_NAME', 'root');
-define('PASSWORD', '');
+const DB_HOST = 'localhost';
+const DB_NAME = 'framework';
+const USER_NAME = 'root';
+const PASSWORD = '';
