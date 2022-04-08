@@ -2,7 +2,7 @@
 
 namespace app\Models;
 
-use core\Database\Model;
+use khokonc\mvc\Database\Model;
 
 class Country extends Model
 {

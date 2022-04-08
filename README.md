@@ -1,4 +1,4 @@
-# framework_from_core
+# framework_from_khokonc\mvc
 It is a php micro framework.
 
 I have developed it using OOP PHP && MySql.

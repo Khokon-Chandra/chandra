@@ -1,14 +1,15 @@
 <?php
 
-namespace core;
+namespace khokonc\mvc\Route;
 
 use app\Exceptions\CsrfTokenNotVerified;
 use app\Exceptions\NotFoundException;
+use khokonc\mvc\Auth;
+use khokonc\mvc\Request;
 
 class Router
 {
     private Request $request;
-    private Session $session;
     private Auth $auth;
 
     public $routes = [];
@@ -79,15 +80,19 @@ class Router
 
     public function resource($path, $class)
     {
-
+        // registered Index method
         $this->get($path, [$class, 'index'])->name("$path.index");
-
+        // registered create method
         $this->get("$path/create", [$class, 'create'])->name("$path.create");
+        // Store metod
         $this->post($path, [$class, 'store'])->name("$path.store");
-
+        // show method
+        $this->get("$path/{id}", [$class, 'show'])->name("$path.show");
+        // edit method
         $this->get("$path/{id}/edit", [$class, 'edit'])->name("$path.edit");
+        // update method
         $this->post("$path/{id}/edit", [$class, 'update'])->name("$path.update");
-
+        // destroy method
         $this->post("$path/{id}/delete", [$class, 'destroy'])->name("$path.destroy");
 
         return $this;
@@ -103,6 +108,11 @@ class Router
         }
         return $this;
     }
+
+
+    /**
+     * Register Route name here
+     */
 
     public function name($name)
     {

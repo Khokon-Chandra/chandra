@@ -2,7 +2,7 @@
 
 namespace app\Controllers;
 
-use core\Request;
+use khokonc\mvc\Request;
 
 class HomeController extends Controller
 {

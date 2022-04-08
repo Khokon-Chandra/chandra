@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
-use app\Controllers\Controller;
 use app\Models\City;
 use app\Models\Client;
 use app\Models\Country;
-use core\Request;
+use khokonc\mvc\Request;
 
 class ClientController extends Controller
 {
@@ -34,7 +33,7 @@ class ClientController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function search(Request $request): string
     {
 
         return view('client._list', [
@@ -43,7 +42,7 @@ class ClientController extends Controller
     }
 
 
-    public function create()
+    public function create(): string
     {
         return "create";
     }
@@ -64,7 +63,7 @@ class ClientController extends Controller
 
     public function update($id)
     {
-        return "update";
+
     }
 
 

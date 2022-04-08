@@ -495,7 +495,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Khokon', 'khokonchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
+(1, 'Khokon', 'khokonc\mvchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
 (2, 'vorozu@mailinator.com', 'monytisazo@mailinator.com', '$2y$10$1S8/1HmosaNh41FbbSdGdeHkeMkv2n25VhgCICKu0TXavBP7DGQe6', NULL, NULL),
 (3, 'qybylubo@mailinator.com', 'senykoxomu@mailinator.com', '$2y$10$57q4l0PDCo6q4ksVdbNm7.mHTuG6NNRag0H48BDyvEACLCNmkboc.', NULL, NULL),
 (4, 'nuwaz@mailinator.com', 'rabe@mailinator.com', '$2y$10$nBgZlUFkzsCTTq3CZtxleu7HOrew8k9fYRVMcHrwdEELMGSGWiVta', NULL, NULL),
@@ -523,7 +523,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 (26, 'vyvyzur@mailinator.com', 'cassdfdsuxosype@mailinator.com', '$2y$10$V2dp8z7qAyo0Ry65OTLGpueDGG8I5LW9oZwgI9sLxioLl48HhZBnK', NULL, NULL),
 (27, 'nasiju@mailinator.com', 'xajsdfsdy@mailinator.com', '$2y$10$N0krsJaJ5iwXxU1CzWnhgOEb9lM7alCGQxYH4/6R/.WRQjrpFqxyK', NULL, NULL),
 (28, 'Jescie Frost', 'lidsfdsli@mailinator.com', '$2y$10$rsP2k0fQB3Vzbz6YCpL4vOSe7DumRpAKk871zPwkskQfzf2vdPxMa', NULL, NULL),
-(29, 'Khokon', 'khokonchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
+(29, 'Khokon', 'khokonc\mvchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
 (30, 'vorozu@mailinator.com', 'monytisazo@mailinator.com', '$2y$10$1S8/1HmosaNh41FbbSdGdeHkeMkv2n25VhgCICKu0TXavBP7DGQe6', NULL, NULL),
 (31, 'qybylubo@mailinator.com', 'senykoxomu@mailinator.com', '$2y$10$57q4l0PDCo6q4ksVdbNm7.mHTuG6NNRag0H48BDyvEACLCNmkboc.', NULL, NULL),
 (32, 'nuwaz@mailinator.com', 'rabe@mailinator.com', '$2y$10$nBgZlUFkzsCTTq3CZtxleu7HOrew8k9fYRVMcHrwdEELMGSGWiVta', NULL, NULL),
@@ -548,7 +548,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 (51, 'husosdfsdfsuk@mailinator.com', 'qyhdsfsiso@mailinator.com', '$2y$10$p9/e56R90fKl7WaitJgHMupugTyPu3jho4pOs.mP8Fr4A8RPL.Zme', NULL, NULL),
 (52, 'vovdsfdsax@mailinator.com', 'buxsdfsdifacu@mailinator.com', '$2y$10$6fqSnYqA9DrzrMkKqPrGxeD7Ndg9g7ddZ0KorduR79ucdMHhnbAKG', NULL, NULL),
 (53, 'voryha@mailinator.com', 'macysdfsdxer@mailinator.com', '$2y$10$i34Ebb5CRCjyVo2m3UTvwu1m/zLyyibTRJfoqAlMQiBCwXpIfYnG.', NULL, '0000-00-00 00:00:00'),
-(54, 'Khokon', 'khokonchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
+(54, 'Khokon', 'khokonc\mvchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
 (55, 'vorozu@mailinator.com', 'monytisazo@mailinator.com', '$2y$10$1S8/1HmosaNh41FbbSdGdeHkeMkv2n25VhgCICKu0TXavBP7DGQe6', NULL, NULL),
 (56, 'qybylubo@mailinator.com', 'senykoxomu@mailinator.com', '$2y$10$57q4l0PDCo6q4ksVdbNm7.mHTuG6NNRag0H48BDyvEACLCNmkboc.', NULL, NULL),
 (57, 'nuwaz@mailinator.com', 'rabe@mailinator.com', '$2y$10$nBgZlUFkzsCTTq3CZtxleu7HOrew8k9fYRVMcHrwdEELMGSGWiVta', NULL, NULL),
@@ -573,7 +573,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 (76, 'husosdfsdfsuk@mailinator.com', 'qyhdsfsiso@mailinator.com', '$2y$10$p9/e56R90fKl7WaitJgHMupugTyPu3jho4pOs.mP8Fr4A8RPL.Zme', NULL, NULL),
 (77, 'vovdsfdsax@mailinator.com', 'buxsdfsdifacu@mailinator.com', '$2y$10$6fqSnYqA9DrzrMkKqPrGxeD7Ndg9g7ddZ0KorduR79ucdMHhnbAKG', NULL, NULL),
 (78, 'voryha@mailinator.com', 'macysdfsdxer@mailinator.com', '$2y$10$i34Ebb5CRCjyVo2m3UTvwu1m/zLyyibTRJfoqAlMQiBCwXpIfYnG.', NULL, '0000-00-00 00:00:00'),
-(79, 'Khokon', 'khokonchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
+(79, 'Khokon', 'khokonc\mvchandra4@gmail.com', '$2y$10$DQ8XNalWAfMBQM/WEuSlx.bZa6DdI5jMYt/5THSMwQ9P7BdDBaGFS', NULL, NULL),
 (80, 'vorozu@mailinator.com', 'monytisazo@mailinator.com', '$2y$10$1S8/1HmosaNh41FbbSdGdeHkeMkv2n25VhgCICKu0TXavBP7DGQe6', NULL, NULL),
 (81, 'qybylubo@mailinator.com', 'senykoxomu@mailinator.com', '$2y$10$57q4l0PDCo6q4ksVdbNm7.mHTuG6NNRag0H48BDyvEACLCNmkboc.', NULL, NULL),
 (82, 'nuwaz@mailinator.com', 'rabe@mailinator.com', '$2y$10$nBgZlUFkzsCTTq3CZtxleu7HOrew8k9fYRVMcHrwdEELMGSGWiVta', NULL, NULL),

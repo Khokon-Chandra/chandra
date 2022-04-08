@@ -4,8 +4,8 @@ namespace app\Controllers\Auth;
 
 use app\Controllers\Controller;
 use app\Models\User;
-use core\Auth;
-use core\Request;
+use khokonc\mvc\Auth;
+use khokonc\mvc\Request;
 
 class LoginController extends Controller
 {

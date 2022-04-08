@@ -2,7 +2,7 @@
 
 namespace app\Controllers\Auth;
 
-use core\Request;
+use khokonc\mvc\Request;
 use app\Controllers\Controller;
 use app\Models\User;
 

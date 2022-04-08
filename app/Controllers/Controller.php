@@ -2,10 +2,10 @@
 namespace app\Controllers;
 
 use app\Kernel;
-use core\Auth;
-use core\Request;
-use core\Route;
-use core\Session;
+use khokonc\mvc\Auth;
+use khokonc\mvc\Request;
+use khokonc\mvc\Route\Route;
+use khokonc\mvc\Session;
 
 class Controller{
 

@@ -4,20 +4,20 @@
         "psr-4": {
             "app\\" : "app/",
             "app\\Controllers\\" : "app/Controllers/",
+            "app\\Models\\" : "app/Models/",
             "app\\Exceptions\\" : "app/Exceptions/",
             "app\\Middleware\\" : "app/Middleware/",
-            "app\\Models\\" : "app/Models/",
-            "core\\Database\\" : "core/Database/",
-            "core\\Database\\Traits\\" : "core/Database/Traits/",
-            "core\\Exceptions\\" : "core/Exceptions/",
-            "core\\" : "core/"
+            "khokonc\mvc\mvc\\Database\\" : "khokonc\mvc/Database/",
+            "khokonc\mvc\\Database\\Traits\\" : "khokonc\mvc/Database/Traits/",
+            "khokonc\mvc\\Exceptions\\" : "khokonc\mvc/Exceptions/",
+            "khokonc\mvc\\" : "khokonc\mvc/"
             
         }
     },
     "authors": [
         {
             "name": "Khokon-Chandra",
-            "email": "khokonchandra4@gmail.com"
+            "email": "khokonc\mvchandra4@gmail.com"
         }
     ],
     "require": {}

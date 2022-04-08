@@ -1,6 +1,6 @@
 <?php
 
-use core\Route;
+use khokonc\mvc\Route\Route;
 use app\Controllers\Auth\ForgotPasswordController;
 use app\Controllers\Auth\LoginController;
 use app\Controllers\Auth\RegisterController;

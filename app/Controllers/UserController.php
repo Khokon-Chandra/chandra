@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use app\Controllers\Controller;
-use core\Request;
+use khokonc\mvc\Request;
 use app\Models\User;
 
 class UserController extends Controller

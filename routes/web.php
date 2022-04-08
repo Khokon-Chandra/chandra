@@ -1,6 +1,6 @@
 <?php
 
-use core\Route;
+use khokonc\mvc\Route\Route;
 use app\Controllers\ClientController;
 use app\Controllers\HomeController;
 use app\Controllers\UserController;

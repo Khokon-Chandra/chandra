@@ -1,8 +1,8 @@
 <?php
 namespace app\Middlewares;
 
-use core\Route;
-use core\BaseMiddleware as Middleware;
+use khokonc\mvc\Route\Route;
+use khokonc\mvc\BaseMiddleware as Middleware;
 
 class GuestMiddleware extends Middleware
 {
