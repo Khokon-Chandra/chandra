@@ -14,3 +14,7 @@ const DB_HOST = 'localhost';
 const DB_NAME = 'framework';
 const USER_NAME = 'root';
 const PASSWORD = '';
+
+
+
+// App configuration

@@ -9,7 +9,7 @@ use khokonc\mvc\Request;
 
 class ClientController extends Controller
 {
-    public function index(Request $request): string
+    public function index(Request $request)
     {
 
         $types = [

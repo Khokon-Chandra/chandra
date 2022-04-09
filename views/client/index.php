@@ -1,6 +1,7 @@
 <x-layouts.app>
 
-    <?php include(BASE_URL . '/views/client/_filter.php') ?>
+    @include("client._filter")
+    @include("client._filter")
 
     <div class="card">
         <p class="card-header bg-light">

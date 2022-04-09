@@ -6,8 +6,7 @@
             "App\\Controllers\\" : "app/Controllers/",
             "App\\Models\\" : "app/Models/",
             "App\\Exceptions\\" : "app/Exceptions/",
-            "App\\Middleware\\" : "app/Middlewares/",
-            "Khokonc\\Mvc\\" : "/"
+            "App\\Middleware\\" : "app/Middlewares/"
         }
 
     },
