@@ -1,7 +1,6 @@
 <x-layouts.app>
 
     @include("client._filter")
-    @include("client._filter")
 
     <div class="card">
         <p class="card-header bg-light">
