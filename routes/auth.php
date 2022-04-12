@@ -1,9 +1,9 @@
 <?php
 
-use Khokonc\Mvc\Routes\Route;
 use App\Controllers\Auth\ForgotPasswordController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
+use khokonc\mvc\Routing\Route;
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [LoginController::class, 'create'])->name('login.create');

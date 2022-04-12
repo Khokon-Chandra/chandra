@@ -1,7 +1,7 @@
 <?php
 
-use Khokonc\Mvc\Routes\Route;
-use App\Controllers\ClientController;
+use Khokonc\Mvc\Routing\Route;
+use App\Controllers\ProjectController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 
@@ -9,14 +9,16 @@ use App\Controllers\UserController;
 include(BASE_URL."/routes/auth.php");
 //web routes
 
+
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
-    Route::resource('clients', ClientController::class);
+    Route::resource('projects', ProjectController::class);
     Route::resource('users', UserController::class);
-
-    Route::post('clients',[ClientController::class,'search'])->name('clients.search');
+    Route::post('projects/search',[ProjectController::class,'search'])->name('projects.search');
 });
 
 
+Route::get('/post/{id}/page/{name}',function ($request,$id,$name){
+    echo $id;
+    echo $name;
+});

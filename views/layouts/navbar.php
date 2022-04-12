@@ -20,12 +20,12 @@
           <a class="nav-link" href="<?= route('home') ?>">Home</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="<?= route('clients.index') ?>">Clients</a>
-        </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?= route('users.index') ?>">Users</a>
+          </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="<?= route('users.index') ?>">Users</a>
+          <a class="nav-link" href="<?= route('projects.index') ?>">Projects</a>
         </li>
 
       </ul>

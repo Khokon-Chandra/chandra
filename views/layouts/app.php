@@ -16,9 +16,9 @@
 <body>
 
 
-  <?php include(BASE_URL . '/views/layouts/navbar.php')  ?>
+  @include("layouts.navbar")
 
-  <div class="container-fluid py-4">
+  <div class="container py-4">
     <?= session_flash('success') ? "<div class='alert alert-success'>" . session_flash('success') . "</div>" : '' ?>
     <?= $slot ?>
   </div>

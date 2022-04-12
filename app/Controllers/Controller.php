@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Kernel;
 use khokonc\mvc\Auth;
 use khokonc\mvc\Request;
-use Khokonc\Mvc\Routes\Route;
+use Khokonc\Mvc\Routes\Application;
 use khokonc\mvc\Session;
 
 class Controller{

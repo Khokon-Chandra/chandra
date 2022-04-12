@@ -11,7 +11,7 @@ const APP_URL = 'http://localhost:8000';
 
 
 const DB_HOST = 'localhost';
-const DB_NAME = 'framework';
+const DB_NAME = 'gui';
 const USER_NAME = 'root';
 const PASSWORD = '';
 
