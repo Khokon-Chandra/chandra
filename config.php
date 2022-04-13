@@ -18,3 +18,7 @@ const PASSWORD = '';
 
 
 // App configuration
+
+const VIEW_PATH = __DIR__."views";
+
+const VIEW_PATH_FOR_ERRORS = VIEW_PATH."/errors";

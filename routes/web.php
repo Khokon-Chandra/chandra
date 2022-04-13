@@ -17,8 +17,3 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('projects/search',[ProjectController::class,'search'])->name('projects.search');
 });
 
-
-Route::get('/post/{id}/page/{name}',function ($request,$id,$name){
-    echo $id;
-    echo $name;
-});

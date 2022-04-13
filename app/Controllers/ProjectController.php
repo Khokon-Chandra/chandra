@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\City;
 use App\Models\Client;
 use App\Models\Project;
+use khokonc\mvc\Http\HttpRedirectResponse;
 use khokonc\mvc\Request;
 use khokonc\mvc\Session;
 
@@ -13,15 +14,15 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         return view('project.index', [
-         'pageTitle'=>'Project List',
-         'projects' =>app(Project::class)->all()
+            'pageTitle' => 'Project List',
+            'projects' => app(Project::class)->all()
         ]);
     }
 
-    public function search(Request $request):String
+    public function search(Request $request): string
     {
         return view('project._list', [
-            'projects' =>app(Project::class)->all()
+            'projects' => app(Project::class)->all()
         ]);
     }
 
@@ -32,20 +33,20 @@ class ProjectController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request):HttpRedirectResponse
     {
         $attribute = $request->validate([
             'name' => 'required',
-            'code' => 'required|projects:unique'
+            'code' => 'required|unique:projects'
         ]);
 
         app(Project::class)->create($attribute);
-        (new Session())->setFlashMessage('success','Successfully project created');
-        redirect(route('projects.index'));
+
+        return redirect()->route('projects.index')->with('success', 'Successfully record inserted');
 
     }
 
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
         return view('project.show');
     }
