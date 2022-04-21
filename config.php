@@ -11,7 +11,7 @@ const APP_URL = 'http://localhost:8000';
 
 
 const DB_HOST = 'localhost';
-const DB_NAME = 'gui';
+const DB_NAME = 'framework';
 const USER_NAME = 'root';
 const PASSWORD = '';
 
@@ -19,6 +19,6 @@ const PASSWORD = '';
 
 // App configuration
 
-const VIEW_PATH = __DIR__."views";
+const VIEW_PATH = __DIR__ . "/resources/views";
 
 const VIEW_PATH_FOR_ERRORS = VIEW_PATH."/errors";

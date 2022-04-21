@@ -18,17 +18,19 @@ class UserController extends Controller
 
     public function create()
     {
-        return "create";
+        return view('user.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return "store";
+        dd($request->all());
     }
 
     public function edit(Request $request,$id)
     {
-        echo $id;
+        return view('user.edit',[
+            'user' =>app(User::class)->where('id',$id)->first()
+        ]);
     }
 
     public function update($id)

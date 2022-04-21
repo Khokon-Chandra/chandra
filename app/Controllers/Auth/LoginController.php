@@ -42,10 +42,10 @@ class LoginController extends Controller
                 'created_at' => $user->created_at,
             ]);
             $request->session->setFlashMessage('success', 'Successfully Loged in');
-            redirect('/');
+            return redirect('/');
         }
         $this->session->setFlashMessage('errors', ['email'=>'credential mis-match']);
-        redirect('/login');
+        return redirect('/login');
     }
 
 

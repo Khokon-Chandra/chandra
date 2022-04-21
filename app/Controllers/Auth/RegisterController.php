@@ -46,6 +46,6 @@ class RegisterController extends Controller
             'created_at' => $user->created_at,
         ]);
         $request->session->setFlashMessage('success', 'Successfully Registered');
-        redirect('/');
+        return redirect('/');
     }
 }

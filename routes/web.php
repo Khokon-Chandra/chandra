@@ -12,8 +12,6 @@ include(BASE_URL."/routes/auth.php");
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::resource('projects', ProjectController::class);
     Route::resource('users', UserController::class);
-    Route::post('projects/search',[ProjectController::class,'search'])->name('projects.search');
 });
 

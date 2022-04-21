@@ -3,8 +3,8 @@
         <div class="card">
             <h4 class="card-header">Create new post:</h4>
             <div class="card-body">
-                <form method="POST" action="<?= route('posts.store') ?>">
-                    <?= csrf_token() ?>
+                <form method="POST" action="<?= route('users.store') ?>">
+                    @csrf
                     <input type="text" name="title" class="form-control" placeholder="post title">
                     <textarea name="content" class="form-control" rows="5"></textarea>
                     <div class="mt-3">
