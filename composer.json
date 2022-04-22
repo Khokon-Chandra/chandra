@@ -17,6 +17,7 @@
         }
     ],
     "require": {
+        "php": "^7.4.0",
         "khokonc/mvc-core": "^1.0"
     }
 }

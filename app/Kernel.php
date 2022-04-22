@@ -1,21 +1,7 @@
 <?php
-namespace app;
 
-use App\Middlewares\AuthMiddleware;
-use App\Middlewares\GuestMiddleware;
+return [
+    'auth' => \App\Middlewares\AuthMiddleware::class,
+    'guest' => \App\Middlewares\GuestMiddleware::class,
+];
 
-class Kernel
-{
-    public function middleware($key)
-    {
-        return $this->registerMiddleware()[$key];
-    }
-
-    public function registerMiddleware()
-    {
-        return [
-            'auth' => AuthMiddleware::class,
-            'guest' => GuestMiddleware::class,
-        ];
-    }
-}

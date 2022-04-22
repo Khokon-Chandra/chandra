@@ -25,9 +25,12 @@
 
                 foreach ($users->data as $user) {
                     $action = sprintf(
-                        '<a href="#" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
-                            <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
-                            <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>'
+                        '<a href="%s" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
+                            <a href="%s" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                            <form class="d-inline" action="%s" method="POST">@csrf<button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i></button></form>',
+                        route('users.edit',$user->id),
+                        route('users.show',$user->id),
+                        route('users.destroy',$user->id),
                     );
                     printf(
                         '<tr>

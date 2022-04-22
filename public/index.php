@@ -4,11 +4,10 @@ require_once "../config.php";
 
 require_once "../vendor/autoload.php";
 
-require_once "../vendor/khokonc/mvc-core/Helpers.php";
-
 $app = new \khokonc\mvc\Application();
 
-new \khokonc\mvc\Routing\Route($app);
+$app->init();
+
 
 require_once "../routes/web.php";
 

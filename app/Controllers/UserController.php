@@ -23,7 +23,14 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+
+    }
+
+    public function show($id)
+    {
+        return view('user.show',[
+            'user'=>"chown"
+        ]);
     }
 
     public function edit(Request $request,$id)

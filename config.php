@@ -1,5 +1,7 @@
 <?php
 
+const APP_DEBUG = true;
+
 const APP_KEY = "KD83475JSFL9859H6LJ09Q34JF156446T42";
 
 const BASE_URL = __DIR__;

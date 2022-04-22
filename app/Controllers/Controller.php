@@ -4,41 +4,38 @@ namespace App\Controllers;
 use App\Kernel;
 use khokonc\mvc\Auth;
 use khokonc\mvc\Request;
-use Khokonc\Mvc\Routes\Application;
+use Khokonc\Mvc\Application;
 use khokonc\mvc\Session;
 
 class Controller{
 
-    private $middlewareClass;
-    protected ?Auth $auth;
-    protected ?Request $request;
-    protected ?Session $session;
-    
-    
-    public function setRequest(?Request $request)
+    protected ?string $middleware = null;
+
+    protected ?Auth $auth = null;
+
+    protected ?Request $request = null;
+
+    protected ?Session $session = null;
+
+    public function set(Application $app)
     {
-        $this->request = $request;
-        $this->session = $request->session;
+        $this->auth = $app->auth;
+        $this->request = $app->request;
+        $this->session = $app->session;
     }
 
-    public function setAuth(?Auth $auth)
+    protected function middleware($middlewareKey)
     {
-        $this->auth = $auth;
+        $this->middleware = $middlewareKey;
     }
 
-    public function middleware($middlewareKey)
+    public function getMiddleware(): ?string
     {
-        $kernel = new Kernel();
-        $this->middlewareClass = $kernel->middleware($middlewareKey);
+        return $this->middleware;
     }
 
 
-    public function getMiddleware()
-    {
-        if(isset($this->middlewareClass)){
-            return new $this->middlewareClass();
-        }
-        return false;
-    }
+
+
 
 }

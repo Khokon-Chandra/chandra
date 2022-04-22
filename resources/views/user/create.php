@@ -5,8 +5,9 @@
             <div class="card-body">
                 <form method="POST" action="<?= route('users.store') ?>">
                     @csrf
-                    <input type="text" name="title" class="form-control" placeholder="post title">
-                    <textarea name="content" class="form-control" rows="5"></textarea>
+                    <input type="text" name="name" class="form-control" placeholder="post title">
+                    <input type="email" name="email" class="form-control">
+                    <input type="password" name="password" >
                     <div class="mt-3">
                         <input type="submit" value="Save">
                     </div>

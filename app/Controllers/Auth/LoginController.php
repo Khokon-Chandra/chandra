@@ -4,7 +4,6 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\Controller;
 use App\Models\User;
-use khokonc\mvc\Auth;
 use khokonc\mvc\Request;
 
 class LoginController extends Controller
@@ -52,5 +51,6 @@ class LoginController extends Controller
     public function destroy(Request $request)
     {
         $this->auth->logout();
+        return redirect()->route('login.create');
     }
 }
