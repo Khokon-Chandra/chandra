@@ -31,20 +31,10 @@ class ForgotPasswordController extends Controller
             'email' => 'required|exists:users',
         ]);
 
-        
-     
+
        $user = $this->model->where('email',$request->email)->first();
-       if(password_verify($request->password,$user->password)){
-           $this->auth->attemt([
-               'id'=>$user->id,
-               'name'=>$user->name,
-               'email'=>$user->email,
-               'created_at'=>$user->created_at,
-           ]);
-       }       
-    $user = $this->model->where('email',$request->email)->first();
-    
-    redirect('/');
+
+        return redirect('/');
        
     }
 

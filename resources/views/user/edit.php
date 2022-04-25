@@ -3,7 +3,7 @@
         <div class="card">
             <h4 class="card-header">Create new post:</h4>
             <div class="card-body">
-                <form method="POST" action="<?= route('users.update') ?>">
+                <form method="POST" action="<?= route('users.update',$user->id) ?>">
                     @csrf
                     <input type="text" name="name" class="form-control" value="<?= $user->name ?>">
                     <textarea name="content" class="form-control" rows="5"><?= $user->name ?></textarea>
