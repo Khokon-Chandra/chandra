@@ -4,26 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5672ea3598692d2b39f5ce07619ed628",
+    "content-hash": "b5cedd594d0056a0947786f5798b2c24",
     "packages": [
         {
             "name": "khokonc/mvc-core",
-            "version": "v1.0.0",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Khokon-Chandra/mvc-core.git",
-                "reference": "78fd1539063edfdf88b6c43eed5aaaf2f99cf9e3"
+                "reference": "378c131edd41cbc9741820ef8fe532402508952f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/78fd1539063edfdf88b6c43eed5aaaf2f99cf9e3",
-                "reference": "78fd1539063edfdf88b6c43eed5aaaf2f99cf9e3",
+                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/378c131edd41cbc9741820ef8fe532402508952f",
+                "reference": "378c131edd41cbc9741820ef8fe532402508952f",
                 "shasum": ""
+            },
+            "require": {
+                "php": "^7.4.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "khokonc\\mvc\\": "."
+                    "khokonc\\mvc\\": "/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -36,9 +39,9 @@
             "description": "php framework",
             "support": {
                 "issues": "https://github.com/Khokon-Chandra/mvc-core/issues",
-                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.0.0"
+                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.0"
             },
-            "time": "2022-04-08T10:11:32+00:00"
+            "time": "2022-04-22T21:25:22+00:00"
         }
     ],
     "packages-dev": [],
@@ -47,7 +50,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.4.0"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
 }
