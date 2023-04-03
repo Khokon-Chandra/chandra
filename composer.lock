@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5cedd594d0056a0947786f5798b2c24",
+    "content-hash": "da02a24d72e9ac06d47e876feeabc634",
     "packages": [
         {
             "name": "khokonc/mvc-core",
-            "version": "v1.0",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Khokon-Chandra/mvc-core.git",
-                "reference": "378c131edd41cbc9741820ef8fe532402508952f"
+                "reference": "6b06cb4483ce3a60c9f67e10e14020ab14bea343"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/378c131edd41cbc9741820ef8fe532402508952f",
-                "reference": "378c131edd41cbc9741820ef8fe532402508952f",
+                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/6b06cb4483ce3a60c9f67e10e14020ab14bea343",
+                "reference": "6b06cb4483ce3a60c9f67e10e14020ab14bea343",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4.0"
+                "php": "^7.4|^8.0"
             },
             "type": "library",
             "autoload": {
@@ -39,9 +39,9 @@
             "description": "php framework",
             "support": {
                 "issues": "https://github.com/Khokon-Chandra/mvc-core/issues",
-                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.0"
+                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.1"
             },
-            "time": "2022-04-22T21:25:22+00:00"
+            "time": "2023-04-03T04:26:58+00:00"
         }
     ],
     "packages-dev": [],
@@ -51,8 +51,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4.0"
+        "php": "^7.4|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
