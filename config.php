@@ -6,7 +6,7 @@ const APP_KEY = "KD83475JSFL9859H6LJ09Q34JF156446T42";
 
 const BASE_URL = __DIR__;
 
-const APP_URL = 'http://localhost:8000';
+const APP_URL = 'http://localhost:8080';
 
 
 // database information
