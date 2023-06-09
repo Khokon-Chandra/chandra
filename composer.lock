@@ -8,20 +8,23 @@
     "packages": [
         {
             "name": "khokonc/mvc-core",
-            "version": "v1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Khokon-Chandra/mvc-core.git",
-                "reference": "6b06cb4483ce3a60c9f67e10e14020ab14bea343"
+                "reference": "40075e4f6d01c9c9dbd5afce3e438eec556319e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/6b06cb4483ce3a60c9f67e10e14020ab14bea343",
-                "reference": "6b06cb4483ce3a60c9f67e10e14020ab14bea343",
+                "url": "https://api.github.com/repos/Khokon-Chandra/mvc-core/zipball/40075e4f6d01c9c9dbd5afce3e438eec556319e2",
+                "reference": "40075e4f6d01c9c9dbd5afce3e438eec556319e2",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "symfony/dotenv": "^6.3"
             },
             "type": "library",
             "autoload": {
@@ -39,9 +42,9 @@
             "description": "php framework",
             "support": {
                 "issues": "https://github.com/Khokon-Chandra/mvc-core/issues",
-                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.1"
+                "source": "https://github.com/Khokon-Chandra/mvc-core/tree/v1.2"
             },
-            "time": "2023-04-03T04:26:58+00:00"
+            "time": "2023-06-09T08:53:33+00:00"
         }
     ],
     "packages-dev": [
