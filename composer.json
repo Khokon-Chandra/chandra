@@ -19,5 +19,8 @@
     "require": {
         "php": "^7.4|^8.0",
         "khokonc/mvc-core": "^1.0"
+    },
+    "require-dev": {
+        "symfony/dotenv": "^6.3"
     }
 }

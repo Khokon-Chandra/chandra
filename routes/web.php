@@ -5,7 +5,7 @@ use App\Controllers\HomeController;
 use App\Controllers\UserController;
 
 //auth routes
-include(BASE_URL."/routes/auth.php");
+include(__DIR__."/auth.php");
 //web routes
 
 Route::group(['middleware'=>'auth'],function(){

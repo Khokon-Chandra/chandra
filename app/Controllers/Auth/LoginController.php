@@ -17,6 +17,8 @@ class LoginController extends Controller
     public function create()
     {
 
+        
+
         return view('auth.login', [
             'pageTitle' => 'Login',
             'name' => 'Khokon Chandra',
