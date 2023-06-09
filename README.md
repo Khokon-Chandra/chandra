@@ -9,7 +9,7 @@ Developed using OOP PHP && MySql.
  
  1. Run Command:
  ```console
-         composer create-project khokonc/chandra myproject
+ composer create-project khokonc/chandra myproject
   ```
  2. create a database (mysql)
  3. Copy .env.example  as .env . And Update Environment variable 
@@ -35,7 +35,7 @@ Developed using OOP PHP && MySql.
     
   5. run the local server php -S localhost:8000<br>
    ```console 
-      php -S localhost:8000 -t=public
+   php -S localhost:8000 -t=public
    ```
       
   6.finaly goto the browser.<br>
