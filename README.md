@@ -27,7 +27,7 @@ Developed using OOP PHP && MySql.
   
   ```
     hostname , database name, user and passwordl. also APP_URL<br>
-  import <>framework.sql</> file
+  import ```sql users.sql``` file to your database
     
   5. run the local server php -S localhost:8000<br>
    ```console 
