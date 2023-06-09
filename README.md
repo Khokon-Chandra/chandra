@@ -6,9 +6,10 @@ I have developed it using OOP PHP && MySql.
  
  ## Installation:
  
- 1. clone this repository
- 2. create a database (mysql)
- 3. edit the config.php file and insert database info. 
+ 1. Run Command:
+ 2.  ```composer create-project khokonc/chandra myproject```
+ 3. create a database (mysql)
+ 4. edit the config.php file and insert database info. 
     hostname , database name, user and passwordl. also APP_URL<br>
   import <>framework.sql</> file
     
